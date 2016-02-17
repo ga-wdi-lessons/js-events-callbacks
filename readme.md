@@ -2,6 +2,7 @@
 * Flesh out the post-Color Picker `this` section. First, show non-`this` way of doing it. Then talk about `this`, and make sure to `console.log(this)` at some point.
 * Can we not pass in the word "event" as an argument to an event listener?
 * Is there a better example than `<a>` to demonstrate default event behavior (e.g., button)?
+* Add more sample quiz questions
 
 # Events and Callbacks
 
@@ -560,10 +561,6 @@ form.addEventListener("submit", function(event){
   console.log(userInput.value)
 })
 ```
-
-## Homework
-
-<https://github.com/ga-dc/timer_js>
 
 ## Sample Quiz Questions
 
