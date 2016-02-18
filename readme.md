@@ -1,9 +1,7 @@
 # TODO
-* Flesh out the post-Color Picker `this` section. First, show non-`this` way of doing it. Then talk about `this`, and make sure to `console.log(this)` at some point.
-* Can we not pass in the word "event" as an argument to an event listener?
-* Is there a better example than `<a>` to demonstrate default event behavior (e.g., button)?
 * Add more sample quiz questions
-* Add example of how THIS is useful between initial content and the complex color picker example
+* Add example of how `this` is useful between initial content and the complex color picker example
+* Add CFU for `this`
 
 # Events and Callbacks
 
