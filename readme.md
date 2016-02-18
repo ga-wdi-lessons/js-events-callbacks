@@ -3,6 +3,11 @@
 * Can we not pass in the word "event" as an argument to an event listener?
 * Is there a better example than `<a>` to demonstrate default event behavior (e.g., button)?
 * Add more sample quiz questions
+* Sections to remove (in order of least importance)...
+  * Konami Code
+  * Drag and Drop
+  * Timing / Async
+* What does the cash register exercise test?
 
 # Events and Callbacks
 
@@ -71,8 +76,8 @@ Our goal today is to make it so that when a given event occurs in our web applic
 * `mouseover`
 * `keypress`
 * `scroll`
-* `submit`
-> Here's an [extensive list](https://developer.mozilla.org/en-US/docs/Web/Events) of Javascript events.  
+* `submit`  
+> Here's an [extensive list](https://developer.mozilla.org/en-US/docs/Web/Events) of Javascript events.   
 
 In order to run code in response to any of these events, we need to define an **Event Listener**. Below you'll find a simple event listener. It's purpose? Print a message to the console whenever a button is clicked...
 
