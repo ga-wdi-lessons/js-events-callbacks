@@ -158,7 +158,7 @@ The invocation may be immediate or it might happen later. In the example above, 
 
 ### You Do: Practice (15 minutes / 0:50)
 
-Visit this [repository](git@github.com:ga-wdi-exercises/event-listener-practice.git) and follow the instructions.
+Visit this [repository](https://github.com/ga-wdi-exercises/event-listener-practice.git) and follow the instructions.
 
 ## Break (10 minutes / 1:10)
 
