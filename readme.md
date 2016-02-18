@@ -3,11 +3,7 @@
 * Can we not pass in the word "event" as an argument to an event listener?
 * Is there a better example than `<a>` to demonstrate default event behavior (e.g., button)?
 * Add more sample quiz questions
-* Sections to remove (in order of least importance)...
-  * Konami Code
-  * Drag and Drop
-  * Timing / Async
-* What does the cash register exercise test?
+* Add example of how THIS is useful between initial content and the complex color picker example
 
 # Events and Callbacks
 
@@ -18,12 +14,13 @@
 
 ## Learning Objectives
 * Explain the concept of a 'callback' and how we can pass functions as arguments to other functions.
-* Describe the difference between asynchronous and synchronous program execution.
 * Explain why callbacks are important to asynchronous program flow.
+* Pass a named function as a callback to another function.
 * Identify when to reference a function and when to invoke a function.
 * Describe what an anonymous function is and when you would use one.
-* Pass a named function as a callback to another function.
 * Pass an anonymous function as a callback to another function.
+* Define what `this` represents in the context of an event listener.
+* Describe the difference between asynchronous and synchronous program execution.
 
 ## Framing (5 minutes / 0:05)
 In order to do things on the client side and give our web applications behavior, we need programmatic access to HTML and CSS using Javascript. Enter the **document object model**, more commonly known as **the DOM**. This powerful tool allows Javascript to interface with our HTML. Now we have the ability to generate functionality that can act on HTML elements or be activated by HTML elements.
@@ -67,19 +64,21 @@ Now let's put a simple line of code in `script.js` to make sure it's properly li
 console.log( "I'm working!" );
 ```
 
-## Events (15 minutes / 0:25)
+## Events
 
 Our goal today is to make it so that when a given event occurs in our web application, the application then responds to that event.
 
-**What is an event?** Can you answer that questions by looking at some examples?
-* `click`
-* `mouseover`
-* `keypress`
-* `scroll`
-* `submit`  
-> Here's an [extensive list](https://developer.mozilla.org/en-US/docs/Web/Events) of Javascript events.   
+### You Do: What Is An Event? (5 minutes / 0:15)
 
-In order to run code in response to any of these events, we need to define an **Event Listener**. Below you'll find a simple event listener. It's purpose? Print a message to the console whenever a button is clicked...
+But first, a question for you: **What is an event?** Spend two minutes doing the following tasks. You are encouraged to discuss your findings with a partner during the exercise.
+* Come up with your own definition without looking at any other sources. Don't worry about getting it right -- what do you **think** an event is?
+* Now, find (i.e., Google) some documentation on Javascript events. Does that information match your definition? How would you change it?
+* Write down three examples of an event.  
+> If you need some help, you can find information on events and examples [here](http://www.w3schools.com/js/js_events.asp) and  [here](https://developer.mozilla.org/en-US/docs/Web/Events).  
+
+### Setting Up An Event Listener (10 minutes / 0:25)
+
+In order to run code in response to an event, we need to define an **Event Listener**. Below you'll find a simple event listener. It's purpose? Print a message to the console whenever a button is clicked...
 
 ```js
 var button = document.querySelector( "button" );
@@ -101,7 +100,7 @@ When want our "click handler" -- what we're calling an event listener that liste
 ```js
 var button = document.querySelector( "button" );
 ```
-> `.querySelector()` selects the first HTML element that matches the passed-in argument. In the above example, that is `<button>`.  
+> `.querySelector()` selects the first HTML element that matches the passed-in argument. In the above example, that is `<button>`.  You can also pass in a class (ex. `".exampleClass"`) or id (ex. `"#exampleId"`).  
 
 Now the `button` variable contains a reference to the button that exists on our page.  
 
@@ -137,7 +136,7 @@ The first argument is where we indicate what type of event we are listening to. 
 
 ##### `handleClickEvent`
 
-The second argument is where we indicate what we want to happen once the event occurs. In this case, that is everything stored in the `handleClickEvent` function we defined earlier.
+The second argument is where we indicate what we want to happen once the event occurs. This is what is known as a **callback**. In this case, the callback is everything stored in the `handleClickEvent` function we defined earlier.
 
 
 ### Before We Go On... (5 minutes / 0:30)
@@ -154,111 +153,22 @@ Refresh your page. What was different? Why?
 
 > You'll notice that "I was clicked!" pops up immediately upon reload. Also note that the event while it does fire, isn't doing anything. When we include `()` we invoke the function expression. Without the `()`, we're using the function expression as a reference.
 
-## Callbacks (20 minutes / 0:50)
+## Callbacks (5 minutes / 0:35)
 This might not be your first time hearing it, and definitely won't be your last. A callback is a piece of executable code that is passed as an argument to other code, which is expected to invoke (or "call back") that executable code at some convenient time.
 
 The invocation may be immediate or it might happen later. In the example above, `handleClickEvent` is our callback. The invocation happens when the button is clicked.
 
-### Code Along
+### You Do: Practice (15 minutes / 0:50)
 
-Copy and paste this into your `script.js`...
+Visit this [repository](git@github.com:ga-wdi-exercises/event-listener-practice.git) and follow the instructions.
 
-```js
-var button = document.querySelector("button")
-var handleClickEvent = function(){
-  console.log("I was clicked!")
-}
-button.addEventListener("click", handleClickEvent)
-button.addEventListener("click", handleClickEvent)
-```
-
-Test it out. Notice how the callback only happens once, instead of twice? That's because both callbacks have the same name: `handleClickEvent`. Because of this, Javascript thinks they're the same thing.
-
-Now create two different callbacks, one called `handleClickEvent` and one called `otherClickEventHandler`...
-
-```js
-var button = document.querySelector("button")
-var handleClickEvent = function(){
-  console.log("I was clicked!")
-}
-var otherClickEventHandler = function(){
-  console.log("I'm firing on the same click!")
-}
-button.addEventListener("click", handleClickEvent)
-button.addEventListener("click", otherClickEventHandler)
-```
-
-Both fire on one click. That's because they have different names.
-
-> tl;dr: You are unable to add the same function call to the same event to execute functionality twice in 1 click event. Unless you use an anonymous function...  
-
-## Anonymous functions (10 minutes / 1:00)
-
-Now try using what's called an **anonymous function** -- a nameless function -- to make "I was clicked!" get printed to the console twice...
-
-```js
-var button = document.querySelector("button")
-button.addEventListener("click", function(){
-  console.log("I was clicked!")
-})
-button.addEventListener("click", function(){
-  console.log("I was clicked!")
-})
-```
-
-Those two functions look identical, so how come Javascript fired the event twice?
-
-When functions don't have a name, Javascript sort-of "makes up" random names for them. So even though the functions look the same to *us*, Javascript sees them as being different.
-
-This gives us a way of "cheating" to make `handleClickEvent` fire twice...
-
-```js
-var button = document.querySelector("button")
-var handleClickEvent = function(){
-  console.log("I was clicked!")
-}
-button.addEventListener("click", handleClickEvent)
-button.addEventListener("click", function(){
-  handleClickEvent()
-})
-```
-
-Or with two anonymous functions...
-
-```js
-var button = document.querySelector("button")
-var handleClickEvent = function(){
-  console.log("I was clicked!")
-}
-button.addEventListener("click", function(){
-  handleClickEvent()
-})
-button.addEventListener("click", function(){
-  handleClickEvent()
-})
-```
 ## Break (10 minutes / 1:10)
 
 ## You Do: Color Scheme Switcher (30 minutes / 1:40)
 
 Clone this repo and follow the readme instructions: **[Color Scheme Switcher](https://github.com/ga-dc/color-scheme-switcher)**.
 
-## `this`
-
-Here's the shortest way to do it...
-
-```js
-var buttons = document.querySelectorAll("li");
-for(i in buttons){
-  buttons[i].addEventListener("click", function(){
-    document.body.className = this.className;
-  });
-}
-```
-
-Here we make use of the `this` keyword. In the context of an event listener callback, `this` always refers to the object that triggered the event.
-
-## The Event Object (10 minutes / 1:50)
+## `this` (5 minutes)
 
 Back in the code we were using in-class...
 
@@ -269,6 +179,28 @@ var handleClickEvent = function(){
 }
 button.addEventListener("click", handleClickEvent);
 ```
+
+Our favorite keyword: `this`.
+* **Q:** Where have we seen it before? Why do we use it?  
+
+Try this: insert the following line anywhere in our event listener...
+* `console.log(this)`
+* Now what do you see when we click the button? How would you define `this` in the context of an event listener?
+
+In the context of an event listener callback, `this` always refers to the object that triggered the event.
+
+If you're curious, here's a short solution to the earlier Color Scheme Picker exercise that makes use of `this`. Keep in mind, this is advanced! You are not expected to be able to write code like this yet.  
+
+```js
+var buttons = document.querySelectorAll("li");
+for(i in buttons){
+  buttons[i].addEventListener("click", function(){
+    document.body.className = this.className;
+  });
+}
+```
+
+## The Event Object (10 minutes / 1:50)
 
 Now, you're going to make a small change by adding an argument to the anonymous function and printing it to the console...
 
@@ -284,9 +216,9 @@ button.addEventListener("click", handleClickEvent);
 The `evt` stands for `event`.
 > The reason we're not actually using `event` is that it's a "reserved word" in Javascript, like "if" and "return".
 
-#### Turn and Talk (5 minutes / 1:55)
+#### You Do: Explore The Event Object (5 minutes / 1:55)
 
-With your partner, try clicking the button and exploring what properties the MouseEvent object contains. Look for...
+With your partner, try clicking the button and exploring what properties the event (or `evt`) object contains. Look for...
 
 * A way to figure out what element was clicked on.
 * A way to tell the position of the mouse when it clicked.
@@ -313,7 +245,7 @@ Let's explore some other events. Add a text input field into the HTML:
 
 With a partner, add an event listener for the `keyup` event to the input. Explore the `event` object again. **Can you find a way to tell which key was pressed?**
 
-#### We do
+#### We Do
 
 Your code should look something like this...
 
