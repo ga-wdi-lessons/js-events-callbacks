@@ -356,20 +356,6 @@ There are a bunch of different browser events you can use in Javascript, all [li
 
 > Some programmers have qualms with W3Schools since they're mooching off the name of the W3 without actually being related to them. However, this list is accurate and easy-to-read.
 
-### &larr; &larr; &rarr; &rarr; &uarr; &darr; &uarr; &darr; a b &larrhk;
-
-There's a famous cheat code used in old Konami arcade games: you press up, up, down, down, left, right, left, right, 'b', 'a', and then 'start'. This code is so famous that many websites have secret functions for when users enter the Konami Code (with 'Enter' replacing 'start').
-
-Try it out at [Konami Code Sites](http://konamicodesites.com/).
-
-Some of those are now defunct. But my personal favorite is [Vogue.co.uk](http://www.vogue.co.uk/)
-
-This is possible on these websites thanks to Javascript event listeners.
-
-#### Turn and Talk
-
-You've seen how to detect one keypress. **How might you make something happen after a specific series of keypresses?**
-
 ## Event Defaults (5 minutes / 2:15)
 
 Back in the code we were using in-class, replace your button with a link to Google...
@@ -416,56 +402,6 @@ var handleClickEvent = function(e){
 }
 button.addEventListener("click", handleClickEvent);
 ```
-
-## Drag and Drop (5 minutes / 2:20)
-
-**Q: When else might we want to prevent default event behavior?**
-
-Replace your `script.js` with the following code...
-
-```js
-var button = document.querySelector("button")
-var elementStartX, elementStartY;
-var mouseStartX, mouseStartY, mouseCurrentX, mouseCurrentY;
-button.addEventListener("mousedown", startDragging);
-function startDragging(e){
-  elementStartX = button.offsetLeft;
-  elementStartY = button.offsetTop;
-  mouseStartX = e.clientX;
-  mouseStartY = e.clientY;
-  window.addEventListener("mousemove", drag);
-  window.addEventListener("mouseup", stopDragging);
-}
-function stopDragging(){
-  window.removeEventListener("mousemove", drag);
-  window.removeEventListener("mouseup", stopDragging);
-}
-function drag(e){
-  mouseCurrentX = e.clientX;
-  mouseCurrentY = e.clientY;
-  button.style.left = elementStartX + (mouseCurrentX - mouseStartX) + "px";
-  button.style.top = elementStartY + (mouseCurrentY - mouseStartY) + "px";
-}
-```
-
-Then, add in a tiny bit of CSS into your `<head>`...
-
-```css
-button{
-  position:absolute;
-  top:0px;
-  left:0px;
-}
-```
-
-### Turn and talk
-
-* Why are the `mousemove` and `mouseup` event listeners attached to `window` instead of to `button`? (What happens if you change them to being on `button`?)
-* What's the purpose of removing the event listeners?
-* Why do we **have** to use named functions here, instead of anonymous functions?
-* What information do the `offsetLeft`, `offsetTop`, `e.clientX`, and `e.clientY` properties give you?
-* Open the "elements" part of the inspector -- the bit that shows all of the HTML. What's happening to the `<button>` element?
-* What's the difference between `function startDragging(e)` and `var startDragging = function(e)`?
 
 ## Timing Functions (10 minutes / 2:40)
 
