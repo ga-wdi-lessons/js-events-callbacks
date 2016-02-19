@@ -1,11 +1,3 @@
-# TODO
-* Add more sample quiz questions
-* Add example of how `this` is useful between initial content and the complex color picker example
-* Add CFU for `this`
-* Talk about other important forms of `preventDefault`
-* Demo anonymous functions as a callback rather than include in exercise
-* Be prepared for difference between event.target and this
-
 # Events and Callbacks
 
 ## Screencasts
@@ -142,11 +134,11 @@ The invocation may be immediate or it might happen later. In the example above, 
 
 > We can also pass in anonymous functions (i.e., define a nameless function directly inside of the event listener) instead of previously-defined functions.
 
-### You Do: Practice (10 minutes / 0:40)
+### You Do: Practice (10 minutes / 0:35)
 
 Visit this [repository](https://github.com/ga-wdi-exercises/event-listener-practice.git) and follow the instructions.
 
-### Before We Go On... (5 minutes / 0:45)
+### Before We Go On... (5 minutes / 0:40)
 
 Usually when we do anything with functions, we put parentheses after the function name. Here, we have `handleClickEvent` without any parens.
 
@@ -161,13 +153,13 @@ Refresh your page. What was different? Why?
 > You'll notice that "I was clicked!" pops up immediately upon reload. Also note that the event while it does fire, isn't doing anything. When we include `()` we invoke the function expression. Without the `()`, we're using the function expression as a reference.
 
 
-## Break (10 minutes / 0:55)
+## Break (10 minutes / 0:50)
 
-### You Do: Color Scheme Switcher (30 minutes / 1:25)
+### You Do: Color Scheme Switcher (30 minutes / 1:20)
 
 Clone this repo and follow the readme instructions: **[Color Scheme Switcher](https://github.com/ga-dc/color-scheme-switcher)**.
 
-### `this` (5 minutes / 1:30)
+### `this` (5 minutes / 1:25)
 
 Back in the code we were using in-class...
 
@@ -188,6 +180,10 @@ Try this: insert the following line anywhere in our event listener...
 
 In the context of an event listener callback, `this` always refers to the object that triggered the event.
 
+### You Do: This Practice (10 minutes / 1:35)
+
+Clone and follow the instructions in this [repository](https://github.com/ga-wdi-exercises/events-this-practice).
+
 If you're curious, here's a short solution to the earlier Color Scheme Picker exercise that makes use of `this`. Keep in mind, this is advanced! You are not expected to be able to write code like this yet.  
 
 ```js
@@ -199,7 +195,7 @@ for(i in buttons){
 }
 ```
 
-### The Event Object (10 minutes / 1:40)
+### The Event Object (5 minutes / 1:40)
 
 Now, you're going to make a small change by adding an argument to the anonymous function and printing it to the console...
 
@@ -215,14 +211,15 @@ button.addEventListener("click", handleClickEvent);
 The `evt` stands for `event`.
 > The reason we're not actually using `event` is that it's a "reserved word" in Javascript, like "if" and "return".
 
-#### You Do: Explore The Event Object
+#### You Do: Explore The Event Object (5 minutes / 1:45)
 
 With your partner, spend two minutes clicking the button and exploring what properties the event (or `evt`) object contains. Look for...
 
 * A way to figure out what element was clicked on.
 * A way to tell the position of the mouse when it clicked.
+* One other piece of useful or interesting information.
 
-### Key Events (15 minutes / 1:55)
+### Key Events (15 minutes / 2:00)
 
 Let's explore some other events. Add a text input field into the HTML:
 
@@ -287,9 +284,9 @@ There are a bunch of different browser events you can use in Javascript, all [li
 
 > Some programmers have qualms with W3Schools since they're mooching off the name of the W3 without actually being related to them. However, this list is accurate and easy-to-read.
 
-## Break (10 minutes / 2:05)
+## Break (10 minutes / 2:10)
 
-### Event Defaults (5 minutes / 2:10)
+### Event Defaults (5 minutes / 2:15)
 
 Back in the code we were using in-class, replace your button with a link to Google...
 
@@ -386,8 +383,8 @@ stop.addEventListener("click", function(){
   * Why?
   * How is this different from events?
   * When you do this, why doesn't the "stop" button seem to work?
-* How is `clearInterval` different from `removeEventListener`?
-* Give `singAnnoyingSong` an argument of `e`, like we did for the event listeners. What information does it contain?
+* What does `clearInterval` do?
+* Give the anonymous function callbacks an argument of `evt`, like we did for the event listeners, and print it to the console. What information does it contain?
 
 ## Asynchronicity (5 minutes / 2:25)
 
@@ -425,3 +422,7 @@ In this small app we made, anything we want to be sure happens **after** those 5
 
 1. What is the difference between synchronous and asynchronous program execution?
 2. Define a function that takes a function as an argument and invokes the argument when the function is called.
+
+## Additional Practice
+
+* [Timer JS](https://github.com/ga-wdi-exercises/timer_js) (Practice with Timers)
