@@ -29,11 +29,6 @@ In order to do things on the client side and give our web applications behavior,
 **Why do we as web developers want to be able to interact with our HTMl elements**
 * What benefits can you think of?
 
-* Dogs have state (name, color, breed, hunger level) and behavior (barking, fetching, wagging tail).
-* Bicycles also have state (current gear, current pedal cadence, current speed) and behavior (changing gear, changing pedal cadence, applying brakes).
-
-In web development, objects are conceptually similar to real-world objects: they too consist of states and related behaviors. Why bring objects up? What we're doing today is mapping HTML elements into JS objects so that we can **change their state, or give them behavior**.
-
 ## Set Up (5 minutes / 0:10)
 
 For this class we'll be working with only two files: `index.html` and `script.js`. Create these files in your in-class folder...
@@ -161,7 +156,7 @@ This might not be your first time hearing it, and definitely won't be your last.
 
 The invocation may be immediate or it might happen later. In the example above, `handleClickEvent` is our callback. The invocation happens when the button is clicked.
 
-### You Do: Practice (15 minutes / 0:50)
+### You Do: Practice (5 minutes)
 
 Visit this [repository](https://github.com/ga-wdi-exercises/event-listener-practice.git) and follow the instructions.
 
