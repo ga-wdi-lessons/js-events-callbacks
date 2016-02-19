@@ -18,7 +18,7 @@
 ## Framing (5 minutes / 0:05)
 In order to do things on the client side and give our web applications behavior, we need programmatic access to the HTML and CSS using Javascript. Enter the **document object model**, more commonly known as **the DOM**. This powerful tool allows Javascript to interface with our HTML. Now we have the ability to generate functionality that can act on HTML elements or be activated by HTML elements.
 
-**Why do we as web developers want to be able to interact with our HTMl elements**
+**Why do we as web developers want to be able to interact with our HTML elements**
 * What benefits can you think of?
 
 ## Set Up (5 minutes / 0:10)
