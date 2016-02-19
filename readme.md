@@ -134,10 +134,19 @@ The first argument is where we indicate what type of event we are listening to. 
 
 ##### `handleClickEvent`
 
-The second argument is where we indicate what we want to happen once the event occurs. This is what is known as a **callback**. In this case, the callback is everything stored in the `handleClickEvent` function we defined earlier.
+The second argument is where we indicate what we want to happen once the event occurs. This is what is known as a **callback**.  
 
+This might not be your first time hearing it, and definitely won't be your last. A callback is a piece of executable code that is passed as an argument to other code, which is expected to invoke (or "call back") that executable code at some convenient time.
 
-### Before We Go On... (5 minutes / 0:30)
+The invocation may be immediate or it might happen later. In the example above, `handleClickEvent` is our callback. The invocation happens when the button is clicked.  
+
+> We can also pass in anonymous functions (i.e., define a nameless function directly inside of the event listener) instead of previously-defined functions.
+
+### You Do: Practice (10 minutes / 0:40)
+
+Visit this [repository](https://github.com/ga-wdi-exercises/event-listener-practice.git) and follow the instructions.
+
+### Before We Go On... (5 minutes / 0:45)
 
 Usually when we do anything with functions, we put parentheses after the function name. Here, we have `handleClickEvent` without any parens.
 
@@ -151,22 +160,14 @@ Refresh your page. What was different? Why?
 
 > You'll notice that "I was clicked!" pops up immediately upon reload. Also note that the event while it does fire, isn't doing anything. When we include `()` we invoke the function expression. Without the `()`, we're using the function expression as a reference.
 
-## Callbacks (5 minutes / 0:35)
-This might not be your first time hearing it, and definitely won't be your last. A callback is a piece of executable code that is passed as an argument to other code, which is expected to invoke (or "call back") that executable code at some convenient time.
 
-The invocation may be immediate or it might happen later. In the example above, `handleClickEvent` is our callback. The invocation happens when the button is clicked.
+## Break (10 minutes / 0:55)
 
-### You Do: Practice (5 minutes)
-
-Visit this [repository](https://github.com/ga-wdi-exercises/event-listener-practice.git) and follow the instructions.
-
-## Break (10 minutes / 1:10)
-
-## You Do: Color Scheme Switcher (30 minutes / 1:40)
+### You Do: Color Scheme Switcher (30 minutes / 1:25)
 
 Clone this repo and follow the readme instructions: **[Color Scheme Switcher](https://github.com/ga-dc/color-scheme-switcher)**.
 
-## `this` (5 minutes)
+### `this` (5 minutes / 1:30)
 
 Back in the code we were using in-class...
 
@@ -198,7 +199,7 @@ for(i in buttons){
 }
 ```
 
-## The Event Object (10 minutes / 1:50)
+### The Event Object (10 minutes / 1:40)
 
 Now, you're going to make a small change by adding an argument to the anonymous function and printing it to the console...
 
@@ -214,14 +215,14 @@ button.addEventListener("click", handleClickEvent);
 The `evt` stands for `event`.
 > The reason we're not actually using `event` is that it's a "reserved word" in Javascript, like "if" and "return".
 
-#### You Do: Explore The Event Object (5 minutes / 1:55)
+#### You Do: Explore The Event Object
 
-With your partner, try clicking the button and exploring what properties the event (or `evt`) object contains. Look for...
+With your partner, spend two minutes clicking the button and exploring what properties the event (or `evt`) object contains. Look for...
 
 * A way to figure out what element was clicked on.
 * A way to tell the position of the mouse when it clicked.
 
-### Key Events (15 minutes / 2:10)
+### Key Events (15 minutes / 1:55)
 
 Let's explore some other events. Add a text input field into the HTML:
 
@@ -286,7 +287,9 @@ There are a bunch of different browser events you can use in Javascript, all [li
 
 > Some programmers have qualms with W3Schools since they're mooching off the name of the W3 without actually being related to them. However, this list is accurate and easy-to-read.
 
-## Event Defaults (5 minutes / 2:15)
+## Break (10 minutes / 2:05)
+
+### Event Defaults (5 minutes / 2:10)
 
 Back in the code we were using in-class, replace your button with a link to Google...
 
@@ -333,7 +336,7 @@ var handleClickEvent = function(e){
 button.addEventListener("click", handleClickEvent);
 ```
 
-## Timing Functions (10 minutes / 2:40)
+## Timing Functions (10 minutes / 2:20)
 
 Let's look at timing functions -- that is, Javascript's way of making something happen every `x` seconds.
 
@@ -386,7 +389,7 @@ stop.addEventListener("click", function(){
 * How is `clearInterval` different from `removeEventListener`?
 * Give `singAnnoyingSong` an argument of `e`, like we did for the event listeners. What information does it contain?
 
-## Asynchronicity (5/150)
+## Asynchronicity (5 minutes / 2:25)
 
 Run the next bit of code and you can see asynchronous program execution.
 
@@ -417,21 +420,6 @@ Because otherwise the webpage would just "hang" until the operation completes. T
 This risk is greatest when Javascript is making requests to other webpages. There's no way of knowing how long the request will take to complete. It could be near-instant, but if the target server is having a bad day, it could take who-knows-how-long. You don't want the operability of your computer to be at the mercy of some random computer somewhere else.
 
 In this small app we made, anything we want to be sure happens **after** those 5 seconds of commuting should go inside the callback of the `setTimeout`. This way, we can be certain that it will run only when the 5 seconds are up.
-
-## You do: Cash Register Exercise
-
-https://github.com/ga-dc/cash-register
-
-Let’s handle the form submission together
-
-```js
-var form = document.querySelector("form")
-var userInput = document.querySelector("#newEntry")
-form.addEventListener("submit", function(event){
-  event.preventDefault()
-  console.log(userInput.value)
-})
-```
 
 ## Sample Quiz Questions
 
