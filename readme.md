@@ -21,14 +21,18 @@
 * Describe the difference between asynchronous and synchronous program execution.
 
 ## Framing (5 minutes / 0:05)
-In order to do things on the client side and give our web applications behavior, we need programmatic access to HTML and CSS using Javascript. Enter the **document object model**, more commonly known as **the DOM**. This powerful tool allows Javascript to interface with our HTML. Now we have the ability to generate functionality that can act on HTML elements or be activated by HTML elements.
+In order to do things on the client side and give our web applications behavior, we need programmatic access to the HTML and CSS using Javascript. Enter the **document object model**, more commonly known as **the DOM**. This powerful tool allows Javascript to interface with our HTML. Now we have the ability to generate functionality that can act on HTML elements or be activated by HTML elements.
+
+<!-- NHO: would add in a question to help lead framing, asking the why  -->
+**Why do we as web developers want to be able to interact with our HTMl elements**
+<!-- What benefits can you think of? -->
 
 But first, a quick review. An **object** in the real world has different states and behaviors.
 
-* Dogs have state (name, color, breed, hungry) and behavior (barking, fetching, wagging tail).
+* Dogs have state (name, color, breed, hunger level) and behavior (barking, fetching, wagging tail).
 * Bicycles also have state (current gear, current pedal cadence, current speed) and behavior (changing gear, changing pedal cadence, applying brakes).
 
-Software objects are conceptually similar to real-world objects: they too consist of states and related behaviors. Why bring objects up? What we're doing today is mapping HTML elements into JS objects so that we can change their state, or give them behavior.
+In web development, objects are conceptually similar to real-world objects: they too consist of states and related behaviors. Why bring objects up? What we're doing today is mapping HTML elements into JS objects so that we can **change their state, or give them behavior**.
 
 ## Set Up (5 minutes / 0:10)
 
@@ -64,7 +68,7 @@ console.log( "I'm working!" );
 
 ## Events
 
-Our goal today is to make it so that when a given event occurs in our web application, the application then responds to that event.
+Our goal today is to make it so that when a given event occurs in our web application, the application responds to the event appropriately.
 
 ### You Do: What Is An Event? (5 minutes / 0:15)
 
@@ -72,11 +76,12 @@ But first, a question for you: **What is an event?** Spend two minutes doing the
 * Come up with your own definition without looking at any other sources. Don't worry about getting it right -- what do you **think** an event is?
 * Now, find (i.e., Google) some documentation on Javascript events. Does that information match your definition? How would you change it?
 * Write down three examples of an event.  
-> If you need some help, you can find information on events and examples [here](http://www.w3schools.com/js/js_events.asp) and  [here](https://developer.mozilla.org/en-US/docs/Web/Events).  
+
+> If you need some help, you can find information on events and examples [here](http://www.w3schools.com/js/js_events.asp) and [here](https://developer.mozilla.org/en-US/docs/Web/Events).  
 
 ### Setting Up An Event Listener (10 minutes / 0:25)
 
-In order to run code in response to an event, we need to define an **Event Listener**. Below you'll find a simple event listener. It's purpose? Print a message to the console whenever a button is clicked...
+Now that we know a bit about events in Javascript, let's wire up our code to be able to respond to those events. In order to run code in response to an event, we need to define an **Event Listener**. Below you'll find a simple event listener. It's purpose? Print a message to the console whenever a button is clicked...
 
 ```js
 var button = document.querySelector( "button" );
@@ -93,7 +98,7 @@ Let's go through the above code examples line-by-line...
 
 #### Selecting the Element
 
-When want our "click handler" -- what we're calling an event listener that listens for a click event -- to trigger everytime the button is clicked. In order for this to happen, we need to represent that button in Javascript. We can "select" that button using a Javascript selector like [`.querySelector()`](http://www.w3schools.com/jsref/met_document_queryselector.asp). You'll learn more about these in the DOM class.
+We want our "click handler" -- what we're calling an event listener -- to trigger every time the button is clicked. In order for this to happen, we need to represent that button in Javascript. We can "select" that button using a Javascript selector like [`.querySelector()`](http://www.w3schools.com/jsref/met_document_queryselector.asp). You'll learn more about these in the DOM class.
 
 ```js
 var button = document.querySelector( "button" );
@@ -136,7 +141,6 @@ The first argument is where we indicate what type of event we are listening to. 
 
 The second argument is where we indicate what we want to happen once the event occurs. This is what is known as a **callback**. In this case, the callback is everything stored in the `handleClickEvent` function we defined earlier.
 
-
 ### Before We Go On... (5 minutes / 0:30)
 
 Usually when we do anything with functions, we put parentheses after the function name. Here, we have `handleClickEvent` without any parens.
@@ -152,6 +156,7 @@ Refresh your page. What was different? Why?
 > You'll notice that "I was clicked!" pops up immediately upon reload. Also note that the event while it does fire, isn't doing anything. When we include `()` we invoke the function expression. Without the `()`, we're using the function expression as a reference.
 
 ## Callbacks (5 minutes / 0:35)
+
 This might not be your first time hearing it, and definitely won't be your last. A callback is a piece of executable code that is passed as an argument to other code, which is expected to invoke (or "call back") that executable code at some convenient time.
 
 The invocation may be immediate or it might happen later. In the example above, `handleClickEvent` is our callback. The invocation happens when the button is clicked.
