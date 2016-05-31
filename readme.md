@@ -1,11 +1,13 @@
 # Events and Callbacks
 
 ## Screencasts
+
 * [Robin's Screencast](https://youtu.be/S4Xvo_m6P04)
 * [Andy's Screencast - p1](https://www.youtube.com/watch?v=xogI6prB-PI)
 * [Andy's Screencast - p2](https://www.youtube.com/watch?v=Srd2Tx1Z7v8)
 
 ## Learning Objectives
+
 * Explain the concept of a 'callback' and how we can pass functions as arguments to other functions.
 * Explain why callbacks are important to asynchronous program flow.
 * Pass a named function as a callback to another function.
@@ -16,6 +18,7 @@
 * Describe the difference between asynchronous and synchronous program execution.
 
 ## Framing (5 minutes / 0:05)
+
 In order to do things on the client side and give our web applications behavior, we need programmatic access to the HTML and CSS using Javascript. Enter the **document object model**, more commonly known as **the DOM**. This powerful tool allows Javascript to interface with our HTML. Now we have the ability to generate functionality that can act on HTML elements or be activated by HTML elements.
 
 **Why do we as web developers want to be able to interact with our HTML elements**
@@ -23,27 +26,32 @@ In order to do things on the client side and give our web applications behavior,
 
 ## User Interaction
 
-<!-- TODO clarify event and Javascript relationship  -->
+As we write client-side Javascript, it is very important to keep the user's actions in mind when designing our app's UI.
 
-When writing client-side Javascript, it is very important to keep the user's actions in mind when designing our app's UI.
+For example, let's say we have a single button on our landing page, we need to write some code that will execute whenever a user clicks on that button, i.e. pop-up an ad with a special one-and-a-lifetime promotion for that user.
 
-For example, let's say we have a single button on our landing page, we need to write some code that will execute whenever a user clicks on that button.
+Javascript typically will run top-to-bottom, however, we as developers have no idea when the code related to the button click will actually be executed, it's totally dependent on the user. Therefore, we need to write code that will execute asynchronously, and not hold up the rest of our application.
 
-However, we as developers have no idea when this code will actually be executed, it's totally dependent on the user, therefore we need to write code that will execute asynchronously, and not hold up the rest of our application.
+Javascript as a language was built with this problem in mind and has spawned many more solutions that have been introduced through libraries, packages, and frameworks. Together, these tools provide some abstractions to interact with events. As such, we as developers can listen to and respond to these events.
 
-Javascript as a language was built with this problem in mind and has spawned many more solutions that have been introduced through libraries, packages, and frameworks. Together, these tools provide some abstractions to interact with events. **Events** are the way we as programmers can listen to and respond to user action.
+Today, we will get practice writing the underlying code responsible for adding behavior to a webpage with jQuery.
 
-**Q**. Thinking programmatically, what 4 things do we need to account for to solve this problem?
+**Q**. Thinking programmatically, at a high level what are 4 things that we need to account for in order to have some code run as soon as a user clicks on a button?
 
 ## Set Up (5 minutes / 0:10)
 
-For this class we'll be working with only two files: `index.html` and `script.js`. Create these files in your in-class folder...
+Now let's see this example in action!
+
+For this class we'll be working with only two files: `index.html` and `script.js`. Create these files in your a folder in your sandbox directory...
 
 ```bash
+$ cd sandbox
+$ mkdir events-callbacks-practice
+$ cd events-callbacks-practice
 $ touch index.html script.js
 ```
 
-Next, set up your `index.html` file, making sure to link to `script.js`...
+Next, set up your `index.html` file, making sure to include a button, a link to `script.js` and load in jQuery...
 
 ```html
 <!-- index.html -->
@@ -51,6 +59,7 @@ Next, set up your `index.html` file, making sure to link to `script.js`...
 <html>
   <head>
     <title>Events and Callbacks Practice</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   </head>
   <body>
     <button>Click me!</button>
@@ -59,17 +68,18 @@ Next, set up your `index.html` file, making sure to link to `script.js`...
 </html>
 ```
 
-Now let's put a simple line of code in `script.js` to make sure it's properly linked to `index.html`...
+Now let's put a simple block of code in `script.js` to make sure it's properly linked to `index.html`...
 
 ```js
 // script.js
-
-console.log( "I'm working!" );
+$(document).on("ready", function() {
+  console.log( "I'm working!" );
+})
 ```
 
-## Events
+### `$(document).ready()`
 
-Our goal today is to make it so that when a given event occurs in our web application, the application responds to the event appropriately.
+In order to use jQuery to select elements and add event listeners, we need to make sure that the page's content is fully loaded and the page is "ready" for DOM manipulation
 
 ### You Do: What Is An Event? (5 minutes / 0:15)
 
@@ -207,11 +217,11 @@ Clone this repo and follow the readme instructions: **[Color Scheme Switcher](ht
 Back in the code we were using in-class...
 
 ```js
-var button = document.querySelector("button")
+var button = $("button")
 var handleClickEvent = function(){
   console.log("I was clicked!")
 }
-button.addEventListener("click", handleClickEvent);
+button.on("click", handleClickEvent);
 ```
 
 Our favorite keyword: `this`.
@@ -230,12 +240,9 @@ Clone and follow the instructions in this [repository](https://github.com/ga-wdi
 > If you're curious, here's a short solution to the earlier Color Scheme Picker exercise that makes use of `this`. Keep in mind, this is advanced! You are not expected to be able to write code like this yet.  
 
 ```js
-var buttons = $("li");
-for(i in buttons){
-  buttons.eq(i).on("click", function(){
-    $("body").attr("class", $(this).attr("class"));
-  });
-}
+var buttons = $("li").on("click", function () {
+  $("body").attr("class", $(this).attr("class"));
+});
 ```
 
 ### The Event Object (5 minutes / 1:40)
@@ -287,8 +294,7 @@ With a partner, add an event listener for the `keyup` event to the input. Explor
 
 #### We Do
 
-<!-- TODO re-intro this section  -->
-Your code should look something like this...
+Your code in `script.js` should look something like this...
 
 ```js
 var button = $("button");
