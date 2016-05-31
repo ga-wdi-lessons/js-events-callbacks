@@ -21,6 +21,20 @@ In order to do things on the client side and give our web applications behavior,
 **Why do we as web developers want to be able to interact with our HTML elements**
 * What benefits can you think of?
 
+## User Interaction
+
+<!-- TODO clarify event and Javascript relationship  -->
+
+When writing client-side Javascript, it is very important to keep the user's actions in mind when designing our app's UI.
+
+For example, let's say we have a single button on our landing page, we need to write some code that will execute whenever a user clicks on that button.
+
+However, we as developers have no idea when this code will actually be executed, it's totally dependent on the user, therefore we need to write code that will execute asynchronously, and not hold up the rest of our application.
+
+Javascript as a language was built with this problem in mind and has spawned many more solutions that have been introduced through libraries, packages, and frameworks. Together, these tools provide some abstractions to interact with events. **Events** are the way we as programmers can listen to and respond to user action.
+
+**Q**. Thinking programmatically, what 4 things do we need to account for to solve this problem?
+
 ## Set Up (5 minutes / 0:10)
 
 For this class we'll be working with only two files: `index.html` and `script.js`. Create these files in your in-class folder...
@@ -71,14 +85,14 @@ But first, a question for you: **What is an event?** Spend two minutes doing the
 Now that we know a bit about events in Javascript, let's wire up our code to be able to respond to those events. In order to run code in response to an event, we need to define an **Event Listener**. Below you'll find a simple event listener. It's purpose? Print a message to the console whenever a button is clicked...
 
 ```js
-var button = document.querySelector( "button" );
+var button = $("button");
 
 function handleClickEvent(){
   console.log( "I was clicked!" );
 }
 
 // This is the event listener!
-button.addEventListener( "click", handleClickEvent );
+button.on( "click", handleClickEvent );
 ```
 
 Let's go through the above code examples line-by-line...
@@ -88,7 +102,7 @@ Let's go through the above code examples line-by-line...
 We want our "click handler" -- what we're calling an event listener -- to trigger every time the button is clicked. In order for this to happen, we need to represent that button in Javascript. We can "select" that button using a Javascript selector like [`.querySelector()`](http://www.w3schools.com/jsref/met_document_queryselector.asp). You'll learn more about these in the DOM class.
 
 ```js
-var button = document.querySelector( "button" );
+var button = $( "button" );
 ```
 > `.querySelector()` selects the first HTML element that matches the passed-in argument. In the above example, that is `<button>`.  You can also pass in a class (ex. `".exampleClass"`) or id (ex. `"#exampleId"`).  
 
@@ -109,16 +123,45 @@ function handleClickEvent(){
 Now for the big step: linking our behavior with a button click. Let's look at that event listener again and go over each component...
 
 ```js
-button.addEventListener( "click", handleClickEvent );
+button.on( "click", handleClickEvent );
 ```
+
+<details>
+<summary>Vanilla JS implementation</summary>
+
+```
+document.querySelector("button").addEventListener("click", handleClickEvent)
+
+```
+</details>
 
 ##### `button`
 
 The first component is the HTML element we are applying the listener to. In this case, that is the `<button>`, which is stored in our `button` variable.
 
-##### `.addEventListener`
+<details>
+<summary>Vanilla JS implementation</summary>
 
-Next is the Javascript method that allows us to create event listeners: `.addEventListener`. It takes two arguments...
+```
+var button = document.querySelector("button");
+
+```
+</details>
+
+##### `.on`
+
+Next is the jQuery method that allows us to create event listeners: `.on()`. It takes two arguments...
+
+
+<details>
+<summary>Vanilla JS implementation</summary>
+
+```
+.addEventListener()
+
+```
+</details>
+
 
 ##### `"click"`
 
@@ -145,7 +188,7 @@ Usually when we do anything with functions, we put parentheses after the functio
 Try adding parentheses at the end of this line:
 
 ```js
-button.addEventListener("click", handleClickEvent())
+button.on("click", handleClickEvent())
 ```
 
 Refresh your page. What was different? Why?
@@ -159,7 +202,7 @@ Refresh your page. What was different? Why?
 
 Clone this repo and follow the readme instructions: **[Color Scheme Switcher](https://github.com/ga-dc/color-scheme-switcher)**.
 
-### `this` (5 minutes / 1:25)
+### `$(this)` (5 minutes / 1:25)
 
 Back in the code we were using in-class...
 
@@ -175,22 +218,22 @@ Our favorite keyword: `this`.
 * **Q:** Where have we seen it before? Why do we use it?  
 
 Try this: insert the following line anywhere in our event listener...
-* `console.log(this)`
+* `console.log($(this))`
 * Now what do you see when we click the button? How would you define `this` in the context of an event listener?
 
-In the context of an event listener callback, `this` always refers to the object that triggered the event.
+In the context of an event listener callback, `$(this)` always refers to the object that triggered the event.
 
-### You Do: This Practice (10 minutes / 1:35)
+### You Do: `this` Practice (10 minutes / 1:35)
 
 Clone and follow the instructions in this [repository](https://github.com/ga-wdi-exercises/events-this-practice).
 
-If you're curious, here's a short solution to the earlier Color Scheme Picker exercise that makes use of `this`. Keep in mind, this is advanced! You are not expected to be able to write code like this yet.  
+> If you're curious, here's a short solution to the earlier Color Scheme Picker exercise that makes use of `this`. Keep in mind, this is advanced! You are not expected to be able to write code like this yet.  
 
 ```js
-var buttons = document.querySelectorAll("li");
+var buttons = $("li");
 for(i in buttons){
-  buttons[i].addEventListener("click", function(){
-    document.body.className = this.className;
+  buttons.eq(i).on("click", function(){
+    $("body").attr("class", $(this).attr("class"));
   });
 }
 ```
@@ -200,12 +243,12 @@ for(i in buttons){
 Now, you're going to make a small change by adding an argument to the anonymous function and printing it to the console...
 
 ```js
-var button = document.querySelector("button")
+var button = $("button");
 var handleClickEvent = function(evt){
   console.log("I was clicked!")
   console.log(evt)
 }
-button.addEventListener("click", handleClickEvent);
+button.on("click", handleClickEvent);
 ```
 
 The `evt` stands for `event`.
@@ -228,6 +271,7 @@ Let's explore some other events. Add a text input field into the HTML:
 <html>
   <head>
     <title>Events and Callbacks Practice</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   </head>
   <body>
     <button>Click me!</button>
@@ -243,11 +287,12 @@ With a partner, add an event listener for the `keyup` event to the input. Explor
 
 #### We Do
 
+<!-- TODO re-intro this section  -->
 Your code should look something like this...
 
 ```js
-var button = document.querySelector("button")
-var input = document.querySelector("input")
+var button = $("button");
+var input = $("input");
 var handleClickEvent = function(evt){
   console.log("I was clicked!")
   console.log(evt)
@@ -256,8 +301,8 @@ var handleKeyboardEvent = function(evt){
   console.log("You used the keyboard!")
   console.log(evt)
 }
-button.addEventListener("click", handleClickEvent);
-input.addEventListener("keyup", handleKeyboardEvent);
+button.on("click", handleClickEvent);
+input.on("keyup", handleKeyboardEvent);
 ```
 
 A cross-browser way of telling which key is pressed is using the `keyCode` property. For `d`, `evt.keyCode` is `68`. For Shift, it's `16`.
@@ -299,11 +344,11 @@ Back in the code we were using in-class, replace your button with a link to Goog
 Now, add an event listener to that link that brings up a `prompt` box, asking the user if they want to go to Google...
 
 ```js
-var link = document.querySelector("a")
+var link = $("a")
 var handleClickEvent = function(e){
   var input = prompt("You sure you want to go to Google?")
 }
-link.addEventListener("click", handleClickEvent);
+link.on("click", handleClickEvent);
 ```
 
 The problem is we don't know how to stop them from going to Google! They go anyway, whether they hit "OK" or "Cancel".
@@ -311,12 +356,12 @@ The problem is we don't know how to stop them from going to Google! They go anyw
 Some elements, like `<a>`, have a default action they perform. In this case, that action is "going to another webpage." You can prevent that default action with an Event property called `preventDefault`.
 
 ```js
-var link = document.querySelector("a")
+var link = $("a")
 var handleClickEvent = function(e){
   e.preventDefault();
   var input = prompt("You sure you want to go to Google?")
 }
-link.addEventListener("click", handleClickEvent);
+link.on("click", handleClickEvent);
 ```
 
 Now, no matter what the user clicks, they won't go to Google.
@@ -324,7 +369,7 @@ Now, no matter what the user clicks, they won't go to Google.
 In order to make it so they that **do** go to Google on clicking OK, but **don't** on clicking 'Cancel', we can use the fact that when you click 'Cancel' on a `prompt`, it returns `null`...
 
 ```js
-var button = document.querySelector("a")
+var button = $("a")
 var handleClickEvent = function(e){
   if(prompt("You sure you want to go to Google?") === null){
     e.preventDefault();
@@ -363,16 +408,17 @@ Put a "start" and a "stop" button in your HTML...
 Then, replace the contents of your `script.js` with this...
 
 ```js
-var start = document.getElementById("start");
-var stop = document.getElementById("stop");
+var start = $("#start");
+var stop = $("#stop");
 var singAnnoyingSong = function(){
   console.log("I know a song that gets on everybody's nerves...")
 }
 var songTimer;
-start.addEventListener("click", function(){
+start.on("click", function(){
   songTimer = setInterval(singAnnoyingSong, 100);
 });
-stop.addEventListener("click", function(){
+
+stop.on("click", function(){
   clearInterval(songTimer);
 });
 ```
@@ -412,7 +458,7 @@ This is limited mostly to timing functions, and operations where Javascript is l
 
 ### Why doesn't Javascript wait for these operations to complete before going to the next line of code?
 
-Because otherwise the webpage would just "hang" until the operation completes. The browser can't do anything while Javascript is actively running. We've seen this when we've encountered infinite `while` loops. Asyncrhonicity is a way of preventing the computer from freezing.
+Because otherwise the webpage would just "hang" until the operation completes. The browser can't do anything while Javascript is actively running. We've seen this when we've encountered infinite `while` loops. Asynchronicity is a way of preventing the computer from freezing.
 
 This risk is greatest when Javascript is making requests to other webpages. There's no way of knowing how long the request will take to complete. It could be near-instant, but if the target server is having a bad day, it could take who-knows-how-long. You don't want the operability of your computer to be at the mercy of some random computer somewhere else.
 
