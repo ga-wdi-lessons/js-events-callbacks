@@ -10,14 +10,14 @@
 
 * Explain the concept of a 'callback' and how we can pass functions as arguments to other functions.
 * Explain why callbacks are important to asynchronous program flow.
-* Pass a named function as a callback to another function.
-* Identify when to reference a function and when to invoke a function.
+* Pass a named function as a callback to **another** function.
+* Identify when to **reference** a function and when to **invoke** a function.
 * Describe what an anonymous function is and when you would use one.
 * Pass an anonymous function as a callback to another function.
 * Define what `this` represents in the context of an event listener.
 * Describe the difference between asynchronous and synchronous program execution.
 
-## Framing (5 minutes / 0:05)
+## Framing (2:30 - 2:35, 5 minutes)
 
 In order to do things on the client side and give our web applications behavior, we need programmatic access to the HTML and CSS using Javascript. Enter the **document object model**, more commonly known as **the DOM**. This powerful tool allows Javascript to interface with our HTML. Now we have the ability to generate functionality that can act on HTML elements or be activated by HTML elements.
 
@@ -26,9 +26,11 @@ In order to do things on the client side and give our web applications behavior,
 
 ## User Interaction
 
-As we write client-side Javascript, it is very important to keep the user's actions in mind when designing our app's UI.
+As we write client-side Javascript (javascript that is executed by *our browsers*, as opposed to being executed by a server we are accessing), it is very important to keep the user's actions in mind when designing our app's UI.
 
 For example, let's say we have a single button on our landing page, we need to write some code that will execute whenever a user clicks on that button, i.e. pop-up an ad with a special one-and-a-lifetime promotion for that user.
+
+## Asynchronicity
 
 Javascript typically will run top-to-bottom, however, we as developers have no idea when the code related to the button click will actually be executed, it's totally dependent on the user. Therefore, we need to write code that will execute asynchronously, and not hold up the rest of our application.
 
@@ -38,14 +40,14 @@ Today, we will get practice writing the underlying code responsible for adding b
 
 **Q**. Thinking programmatically, at a high level what are 4 things that we need to account for in order to have some code run as soon as a user clicks on a button?
 
-## Set Up (5 minutes / 0:10)
+## Set Up (2:35 - 2:40, 5 minutes)
 
 Now let's see this example in action!
 
-For this class we'll be working with only two files: `index.html` and `script.js`. Create these files in your a folder in your sandbox directory...
+For this lesson we'll be working with only two files: `index.html` and `script.js`. Create these files in your a folder in your sandbox directory...
 
 ```bash
-$ cd sandbox
+$ cd ~/wdi/sandbox
 $ mkdir events-callbacks-practice
 $ cd events-callbacks-practice
 $ touch index.html script.js
@@ -73,26 +75,28 @@ Now let's put a simple block of code in `script.js` to make sure it's properly l
 ```js
 // script.js
 $(document).on("ready", function() {
-  console.log( "I'm working!" );
+  console.log( "The page's contents have finished loading!" );
 })
 ```
 
-### `$(document).ready()`
+#### `$(document).ready()`
 
-In order to use jQuery to select elements and add event listeners, we need to make sure that the page's content is fully loaded and the page is "ready" for DOM manipulation
+In order to use jQuery to select elements and add event listeners, we need to make sure that the **page's content is fully loaded** and the page is "ready" for DOM traversal and manipulation.
 
-### You Do: What Is An Event? (5 minutes / 0:15)
+### You Do: What Is An Event? (2:40-2:45, 5 minutes)
 
 But first, a question for you: **What is an event?** Spend two minutes doing the following tasks. You are encouraged to discuss your findings with a partner during the exercise.
-* Come up with your own definition without looking at any other sources. Don't worry about getting it right -- what do you **think** an event is?
-* Now, find (i.e., Google) some documentation on Javascript events. Does that information match your definition? How would you change it?
-* Write down three examples of an event.  
+1. Come up with your own definition without looking at any other sources. Don't worry about getting it right -- what do you **think** an event is?
+2. Now, find (i.e., Google) some documentation on Javascript events. Does that information match your definition? How would you change it?
+3. Write down three examples of an event.  
 
-> If you need some help, you can find information on events and examples [here](http://www.w3schools.com/js/js_events.asp) and [here](https://developer.mozilla.org/en-US/docs/Web/Events).
+> If you need some help, you can find information on events and examples [W3Schools](http://www.w3schools.com/js/js_events.asp) and [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/Events).
 
-### Setting Up An Event Listener (10 minutes / 0:25)
+### Setting Up An Event Listener (2:45-2:55, 10 minutes)
 
 Now that we know a bit about events in Javascript, let's wire up our code to be able to respond to those events. In order to run code in response to an event, we need to define an **Event Listener**. Below you'll find a simple event listener. It's purpose? Print a message to the console whenever a button is clicked...
+
+#### in `script.js`:
 
 ```js
 var button = $("button");
@@ -109,18 +113,27 @@ Let's go through the above code examples line-by-line...
 
 #### Selecting the Element
 
-We want our "click handler" -- what we're calling an event listener -- to trigger every time the button is clicked. In order for this to happen, we need to represent that button in Javascript. We can "select" that button using a Javascript selector like [`.querySelector()`](http://www.w3schools.com/jsref/met_document_queryselector.asp). You'll learn more about these in the DOM class.
+We want our "click handler" -- what we're calling an event listener -- to trigger every time the button is clicked. In order for this to happen, we need to select the button from the DOM and represent that button in Javascript.
+
+<details>
+<summary>
+Selecting DOM elements with Vanilla JS & jQuery
+</summary>
+In vanilla javascript, we would use `.querySelector()`, however in jQuery we ***wrap it in ca$h*** using the `$()` function which has some added functionality than its vanilla js counterpart. If `.querySelector()` were a kitchen knife, `$()` would be a swiss army knife or a multi-tool.
+</details>
 
 ```js
 var button = $( "button" );
 ```
-> `.querySelector()` selects the first HTML element that matches the passed-in argument. In the above example, that is `<button>`.  You can also pass in a class (ex. `".exampleClass"`) or id (ex. `"#exampleId"`).  
+> `.$()` selects all HTML elements matching the passed-in argument. NOTE: `$()` will return whatever it selects **in a special jQuery array-like object**. In the above example, that is `<button>`.  You can also pass in a class (ex. `$(".exampleClass")`). With an id  (ex. `$("#exampleId")`), `$()` will select the first id that matches.  
+
+> To deal with jQuery `$()` returning things in an array, we have a special jQuery method called `.eq()`. Do not use `[]`, use `.eq()` instead.
 
 Now the `button` variable contains a reference to the button that exists on our page.  
 
 #### Defining the Behavior
 
-When our button is clicked, we want some Javascript code to run that prints a message to the console. We are going to encapsulate that code in a function. We'll do something with it later.
+When our button is clicked, we want some Javascript code to run that prints a message to the console. We are going to **encapsulate** that code in a function. We'll do something with it later.
 
 ```js
 function handleClickEvent(){
@@ -187,18 +200,18 @@ The invocation may be immediate or it might happen later. In the example above, 
 
 > We can also pass in anonymous functions (i.e., define a nameless function directly inside of the event listener) instead of previously-defined functions.
 
-### You Do: Practice (10 minutes / 0:35)
+### You Do: Practice (2:55 - 3:05, 10 minutes)
 
 Visit this [repository](https://github.com/ga-wdi-exercises/event-listener-practice.git) and follow the instructions.
 
-### Before We Go On... (5 minutes / 0:40)
+### Before We Go On... (3:05 - 3:10, 5 minutes)
 
 Usually when we do anything with functions, we put parentheses after the function name. Here, we have `handleClickEvent` without any parens.
 
 Try adding parentheses at the end of this line:
 
 ```js
-button.on("click", handleClickEvent())
+button.on("click", handleClickEvent() );
 ```
 
 Refresh your page. What was different? Why?
@@ -206,13 +219,13 @@ Refresh your page. What was different? Why?
 > You'll notice that "I was clicked!" pops up immediately upon reload. Also note that the event while it does fire, isn't doing anything. When we include `()` we invoke the function expression. Without the `()`, we're using the function expression as a reference.
 
 
-## Break (10 minutes / 0:50)
+## Break (3:20 - 3:30, 10 minutes)
 
-### You Do: Color Scheme Switcher (30 minutes / 1:20)
+### You Do: TimerJS (3:30 - 4:00, 30 minutes)
 
-Clone this repo and follow the readme instructions: **[Color Scheme Switcher](https://github.com/ga-dc/color-scheme-switcher)**.
+**Fork and clone** this repo and follow the readme instructions: **[Timer JS](https://github.com/ga-wdi-exercises/timer_js) (Practice with Timers)**.
 
-### `$(this)` (5 minutes / 1:25)
+### `$(this)` (4:00 - 4:05, 5 minutes)
 
 Back in the code we were using in-class...
 
@@ -224,18 +237,17 @@ var handleClickEvent = function(){
 button.on("click", handleClickEvent);
 ```
 
-Our favorite keyword: `this`.
-* **Q:** Where have we seen it before? Why do we use it?  
-
 Try this: insert the following line anywhere in our event listener...
 * `console.log($(this))`
 * Now what do you see when we click the button? How would you define `this` in the context of an event listener?
 
 In the context of an event listener callback, `$(this)` always refers to the object that triggered the event.
 
-### You Do: `this` Practice (10 minutes / 1:35)
+### You Do: `this` Practice (4:05 - 4:15, 10 minutes)
 
 Clone and follow the instructions in this [repository](https://github.com/ga-wdi-exercises/events-this-practice).
+
+#### Bonus: `this` and Color Scheme Picker
 
 > If you're curious, here's a short solution to the earlier Color Scheme Picker exercise that makes use of `this`. Keep in mind, this is advanced! You are not expected to be able to write code like this yet.  
 
@@ -245,7 +257,7 @@ var buttons = $("li").on("click", function () {
 });
 ```
 
-### The Event Object (5 minutes / 1:40)
+### The Event Object (4:15 - 4:20, 5 minutes)
 
 Now, you're going to make a small change by adding an argument to the anonymous function and printing it to the console...
 
@@ -261,7 +273,7 @@ button.on("click", handleClickEvent);
 The `evt` stands for `event`.
 > The reason we're not actually using `event` is that it's a "reserved word" in Javascript, like "if" and "return".
 
-#### You Do: Explore The Event Object (5 minutes / 1:45)
+#### You Do: Explore The Event Object (4:20 - 4:25, 5 minutes)
 
 With your partner, spend two minutes clicking the button and exploring what properties the event (or `evt`) object contains. Look for...
 
@@ -269,7 +281,7 @@ With your partner, spend two minutes clicking the button and exploring what prop
 * A way to tell the position of the mouse when it clicked.
 * One other piece of useful or interesting information.
 
-### Key Events (15 minutes / 2:00)
+### Key Events (4:25 - 4:40, 15 minutes)
 
 Let's explore some other events. Add a text input field into the HTML:
 
@@ -335,9 +347,9 @@ There are a bunch of different browser events you can use in Javascript, all [li
 
 > Some programmers have qualms with W3Schools since they're mooching off the name of the W3 without actually being related to them. However, this list is accurate and easy-to-read.
 
-## Break (10 minutes / 2:10)
+## Break (4:40 - 4:50, 10 minutes)
 
-### Event Defaults (5 minutes / 2:15)
+### Event Defaults (4:50 - 4:55, 5 minutes)
 
 Back in the code we were using in-class, replace your button with a link to Google...
 
@@ -384,61 +396,8 @@ var handleClickEvent = function(e){
 button.addEventListener("click", handleClickEvent);
 ```
 
-## Timing Functions (10 minutes / 2:20)
 
-Let's look at timing functions -- that is, Javascript's way of making something happen every `x` seconds.
-
-Replace the contents of your `script.js` with this:
-
-```js
-function sayHello(){
-  console.log("Hi there!")
-}
-setInterval(sayHello, 1000);
-```
-
-### Turn and Talk
-
-* What does the number in `setInterval` indicate?
-* Replace `setInterval` with `setTimeout`. What's the difference?
-
-We'll make it more interesting by having the timer start on a click event, and stop on another click event.
-
-Put a "start" and a "stop" button in your HTML...
-
-```html
-<button id="start">Start</button>
-<button id="stop">Stop</button>
-```
-
-Then, replace the contents of your `script.js` with this...
-
-```js
-var start = $("#start");
-var stop = $("#stop");
-var singAnnoyingSong = function(){
-  console.log("I know a song that gets on everybody's nerves...")
-}
-var songTimer;
-start.on("click", function(){
-  songTimer = setInterval(singAnnoyingSong, 100);
-});
-
-stop.on("click", function(){
-  clearInterval(songTimer);
-});
-```
-
-### Turn and Talk
-
-* What happens when you click the "start" button a bunch of times in a row?
-  * Why?
-  * How is this different from events?
-  * When you do this, why doesn't the "stop" button seem to work?
-* What does `clearInterval` do?
-* Give the anonymous function callbacks an argument of `evt`, like we did for the event listeners, and print it to the console. What information does it contain?
-
-## Asynchronicity (5 minutes / 2:25)
+## Asynchronicity (4:55 - 5:00, 5 minutes)
 
 Run the next bit of code and you can see asynchronous program execution.
 
@@ -474,7 +433,3 @@ In this small app we made, anything we want to be sure happens **after** those 5
 
 1. What is the difference between synchronous and asynchronous program execution?
 2. Define a function that takes a function as an argument and invokes the argument when the function is called.
-
-## Additional Practice
-
-* [Timer JS](https://github.com/ga-wdi-exercises/timer_js) (Practice with Timers)
