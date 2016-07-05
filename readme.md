@@ -30,7 +30,7 @@ As we write client-side Javascript (javascript that is executed by *our browsers
 
 For example, let's say we have a single button on our landing page, we need to write some code that will execute whenever a user clicks on that button, i.e. pop-up an ad with a special one-and-a-lifetime promotion for that user.
 
-## Asynchronicity
+## What is Asynchronicity?
 
 Javascript typically will run top-to-bottom, however, we as developers have no idea when the code related to the button click will actually be executed, it's totally dependent on the user. Therefore, we need to write code that will execute asynchronously, and not hold up the rest of our application.
 
@@ -214,16 +214,17 @@ Try adding parentheses at the end of this line:
 button.on("click", handleClickEvent() );
 ```
 
-Refresh your page. What was different? Why?
+Let's refresh our pages and then discuss the result. What was different? Why?
 
 > You'll notice that "I was clicked!" pops up immediately upon reload. Also note that the event while it does fire, isn't doing anything. When we include `()` we invoke the function expression. Without the `()`, we're using the function expression as a reference.
 
 
 ## Break (3:20 - 3:30, 10 minutes)
 
-### You Do: TimerJS (3:30 - 4:00, 30 minutes)
+### You Do: Color Scheme Switcher (3:30 - 4:00, 30 minutes)
 
-**Fork and clone** this repo and follow the readme instructions: **[Timer JS](https://github.com/ga-wdi-exercises/timer_js) (Practice with Timers)**.
+Clone this repo and follow the readme instructions: **[Color Scheme Switcher](https://github.com/ga-dc/color-scheme-switcher)**.
+
 
 ### `$(this)` (4:00 - 4:05, 5 minutes)
 
@@ -237,7 +238,7 @@ var handleClickEvent = function(){
 button.on("click", handleClickEvent);
 ```
 
-Try this: insert the following line anywhere in our event listener...
+Try this-- insert the following line anywhere in our click-handler:
 * `console.log($(this))`
 * Now what do you see when we click the button? How would you define `this` in the context of an event listener?
 
@@ -247,15 +248,21 @@ In the context of an event listener callback, `$(this)` always refers to the obj
 
 Clone and follow the instructions in this [repository](https://github.com/ga-wdi-exercises/events-this-practice).
 
-#### Bonus: `this` and Color Scheme Picker
-
-> If you're curious, here's a short solution to the earlier Color Scheme Picker exercise that makes use of `this`. Keep in mind, this is advanced! You are not expected to be able to write code like this yet.  
-
-```js
+<details>
+<summary>
+Bonus: `this` and Color Scheme Picker
+</summary>
+<p>
+If you're curious, here's a short solution to the earlier Color Scheme Picker exercise that makes use of `this`. Keep in mind, this is advanced! You are not expected to be able to write code like this yet.  
+</p>
+`
 var buttons = $("li").on("click", function () {
   $("body").attr("class", $(this).attr("class"));
 });
-```
+`
+</details>
+
+
 
 ### The Event Object (4:15 - 4:20, 5 minutes)
 
@@ -393,7 +400,7 @@ var handleClickEvent = function(e){
     e.preventDefault();
   }
 }
-button.addEventListener("click", handleClickEvent);
+button.on("click", handleClickEvent);
 ```
 
 
@@ -427,9 +434,15 @@ Because otherwise the webpage would just "hang" until the operation completes. T
 
 This risk is greatest when Javascript is making requests to other webpages. There's no way of knowing how long the request will take to complete. It could be near-instant, but if the target server is having a bad day, it could take who-knows-how-long. You don't want the operability of your computer to be at the mercy of some random computer somewhere else.
 
-In this small app we made, anything we want to be sure happens **after** those 5 seconds of commuting should go inside the callback of the `setTimeout`. This way, we can be certain that it will run only when the 5 seconds are up.
+In this small app we made, anything we want to be sure happens **after** those 5 seconds of computing should go inside the callback of the `setTimeout`. This way, we can be certain that it will run only when the 5 seconds are up.
 
 ## Sample Quiz Questions
 
 1. What is the difference between synchronous and asynchronous program execution?
 2. Define a function that takes a function as an argument and invokes the argument when the function is called.
+
+
+
+## Additional Practice
+
+* [Timer JS](https://github.com/ga-wdi-exercises/timer_js) (Practice with Timers)
