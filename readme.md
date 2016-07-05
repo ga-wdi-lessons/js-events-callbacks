@@ -44,7 +44,7 @@ Interspersed throughout the lesson are examples in vanilla javascript that are e
 
 In general, mixing vanilla javascript expressions with jQuery will usually result in errors. Stick with jQuery for now.
 
-## Set Up (2:35 - 2:40, 5 minutes)
+## We Do: Set Up (2:35 - 2:40, 5 minutes)
 
 For this lesson we'll be working with only two files: `index.html` and `script.js`. Create these files in your a folder in your sandbox directory...
 
@@ -88,6 +88,7 @@ In order to use jQuery to select elements and add event listeners, we need to ma
 ### You Do: What Is An Event? (2:40-2:45, 5 minutes)
 
 But first, a question for you: **What is an event?** Spend two minutes doing the following tasks. You are encouraged to discuss your findings with a partner during the exercise.
+
 1. Come up with your own definition without looking at any other sources. Don't worry about getting it right -- what do you **think** an event is?
 2. Now, find (i.e., Google) some documentation on Javascript events. Does that information match your definition? How would you change it?
 3. Write down three examples of an event.  
@@ -230,6 +231,8 @@ Clone this repo and follow the readme instructions: **[Color Scheme Switcher](ht
 
 ### `$(this)` (3:50 - 3:55, 5 minutes)
 
+Let's switch back to our `events-callbacks-practice` code.
+
 In programming, we will see the keyword `this` quite a bit, especially when we get to object-oriented programming. It's closely related to the idea of **scope**, or where we are in a program during its execution. This will be covered in  detail during the lesson on scope and closures.
 
 With that in the back of our minds, let's have a look at how we can use `this` or rather, `$(this)` in jQuery.
@@ -248,7 +251,12 @@ Try this-- insert the following line anywhere in our click-handler:
 * `console.log($(this))`
 * Now what do you see when we click the button? How would you define `this` in the context of an event listener?
 
+<details>
+<summary>
+Stumped?
+</summary>
 In the context of an event listener callback, `$(this)` always refers to the object that triggered the event.
+</details>
 
 ### You Do: `this` Practice (3:55 - 4:05, 10 minutes)
 
@@ -296,7 +304,7 @@ Some elements, like `<a>`, have a default action they perform. In this case, tha
 var link = $("a")
 var handleClickEvent = function(e){
   e.preventDefault();
-  var input = prompt("You sure you want to go to Google?")
+  prompt("You sure you want to go to Google?")
 }
 link.on("click", handleClickEvent);
 ```
@@ -306,7 +314,7 @@ Now, no matter what the user clicks, they won't go to Google.
 In order to make it so they that **do** go to Google on clicking OK, but **don't** on clicking 'Cancel', we can use the fact that when you click 'Cancel' on a `prompt`, it returns `null`...
 
 ```js
-var button = $("a")
+var link = $("a")
 var handleClickEvent = function(e){
   if(prompt("You sure you want to go to Google?") === null){
     e.preventDefault();
