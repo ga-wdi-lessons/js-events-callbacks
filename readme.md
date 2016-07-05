@@ -314,8 +314,97 @@ var handleClickEvent = function(e){
 }
 button.on("click", handleClickEvent);
 ```
+## Break (4:10 - 4:20, 10 minutes)
 
-### The Event Object (4:10 - 4:15, 5 minutes)
+## Timing Functions (4:20 - 4:30, 10 minutes)
+
+Let's look at timing functions -- that is, Javascript's way of making something happen every `x` seconds.
+
+Replace the contents of your `script.js` with this:
+
+```js
+function sayHello(){
+  console.log("Hi there!")
+}
+setInterval(sayHello, 1000);
+```
+
+### Turn and Talk
+
+* What does the number in `setInterval` indicate?
+* Replace `setInterval` with `setTimeout`. What's the difference?
+
+We'll make it more interesting by having the timer start on a click event, and stop on another click event.
+
+Put a "start" and a "stop" button in your HTML...
+
+```html
+<button id="start">Start</button>
+<button id="stop">Stop</button>
+```
+
+Then, replace the contents of your `script.js` with this...
+
+```js
+var start = $("#start");
+var stop = $("#stop");
+var singAnnoyingSong = function(){
+  console.log("I know a song that gets on everybody's nerves...")
+}
+var songTimer;
+start.on("click", function(){
+  songTimer = setInterval(singAnnoyingSong, 100);
+});
+
+stop.on("click", function(){
+  clearInterval(songTimer);
+});
+```
+
+### Turn and Talk
+
+* What happens when you click the "start" button a bunch of times in a row?
+  * Why?
+  * How is this different from events?
+  * When you do this, why doesn't the "stop" button seem to work?
+* What does `clearInterval` do?
+* Give the anonymous function callbacks an argument of `evt`, like we did for the event listeners, and print it to the console. What information does it contain?
+
+
+## Asynchronicity (4:30 - 4:35, 5 minutes)
+
+Run the next bit of code and you can see asynchronous program execution.
+
+```js
+function anAsyncFunction(){
+  console.log("hello")
+  setTimeout(function(){
+    console.log("this is happening in the middle")
+  }, 5000)
+  console.log("goodbye")
+}
+
+anAsyncFunction();
+```
+
+Wait, what? The goodbye came before the "this is happening in the middle"!
+
+With everything else we've seen, Javascript executes one line of code, then when that line is done, executes the next line of code. This is called being **synchronous**.
+
+However, some operations in Javascript are **asynchronous**, meaning Javascript goes on to the next line of code without waiting for the previous line to complete.
+
+This is limited mostly to timing functions, and operations where Javascript is loading data from some other website.
+
+### Why doesn't Javascript wait for these operations to complete before going to the next line of code?
+
+Because otherwise the webpage would just "hang" until the operation completes. The browser can't do anything while Javascript is actively running. We've seen this when we've encountered infinite `while` loops. Asynchronicity is a way of preventing the computer from freezing.
+
+This risk is greatest when Javascript is making requests to other webpages. There's no way of knowing how long the request will take to complete. It could be near-instant, but if the target server is having a bad day, it could take who-knows-how-long. You don't want the operability of your computer to be at the mercy of some random computer somewhere else.
+
+In this small app we made, anything we want to be sure happens **after** those 5 seconds of computing should go inside the callback of the `setTimeout`. This way, we can be certain that it will run only when the 5 seconds are up.
+
+
+### The Event Object (4:35 - 4:40, 5 minutes)
 
 Now, you're going to make a small change by adding an argument to the anonymous function and printing it to the console...
 
@@ -331,7 +420,7 @@ button.on("click", handleClickEvent);
 The `evt` stands for `event`.
 > The reason we're not actually using `event` is that it's a "reserved word" in Javascript, like "if" and "return".
 
-#### You Do: Explore The Event Object (4:15 - 4:20, 5 minutes)
+#### You Do: Explore The Event Object (4:40 - 4:45, 5 minutes)
 
 With your partner, spend two minutes clicking the button and exploring what properties the event (or `evt`) object contains. Look for...
 
@@ -339,7 +428,7 @@ With your partner, spend two minutes clicking the button and exploring what prop
 * A way to tell the position of the mouse when it clicked.
 * One other piece of useful or interesting information.
 
-### Key Events (4:20 - 4:35, 15 minutes)
+### Key Events (4:45 - 5:00, 15 minutes)
 
 Let's explore some other events. Add a text input field into the HTML:
 
@@ -405,102 +494,14 @@ There are a bunch of different browser events you can use in Javascript, all [li
 
 > Some programmers have qualms with W3Schools since they're mooching off the name of the W3 without actually being related to them. However, this list is accurate and easy-to-read.
 
-## Break (4:35 - 4:45, 10 minutes)
-
-## Timing Functions (4:45 - 4:55, 10 minutes)
-
-Let's look at timing functions -- that is, Javascript's way of making something happen every `x` seconds.
-
-Replace the contents of your `script.js` with this:
-
-```js
-function sayHello(){
-  console.log("Hi there!")
-}
-setInterval(sayHello, 1000);
-```
-
-### Turn and Talk
-
-* What does the number in `setInterval` indicate?
-* Replace `setInterval` with `setTimeout`. What's the difference?
-
-We'll make it more interesting by having the timer start on a click event, and stop on another click event.
-
-Put a "start" and a "stop" button in your HTML...
-
-```html
-<button id="start">Start</button>
-<button id="stop">Stop</button>
-```
-
-Then, replace the contents of your `script.js` with this...
-
-```js
-var start = $("#start");
-var stop = $("#stop");
-var singAnnoyingSong = function(){
-  console.log("I know a song that gets on everybody's nerves...")
-}
-var songTimer;
-start.on("click", function(){
-  songTimer = setInterval(singAnnoyingSong, 100);
-});
-
-stop.on("click", function(){
-  clearInterval(songTimer);
-});
-```
-
-### Turn and Talk
-
-* What happens when you click the "start" button a bunch of times in a row?
-  * Why?
-  * How is this different from events?
-  * When you do this, why doesn't the "stop" button seem to work?
-* What does `clearInterval` do?
-* Give the anonymous function callbacks an argument of `evt`, like we did for the event listeners, and print it to the console. What information does it contain?
-
-
-## Asynchronicity (4:55 - 5:00, 5 minutes)
-
-Run the next bit of code and you can see asynchronous program execution.
-
-```js
-function anAsyncFunction(){
-  console.log("hello")
-  setTimeout(function(){
-    console.log("this is happening in the middle")
-  }, 5000)
-  console.log("goodbye")
-}
-
-anAsyncFunction();
-```
-
-Wait, what? The goodbye came before the "this is happening in the middle"!
-
-With everything else we've seen, Javascript executes one line of code, then when that line is done, executes the next line of code. This is called being **synchronous**.
-
-However, some operations in Javascript are **asynchronous**, meaning Javascript goes on to the next line of code without waiting for the previous line to complete.
-
-This is limited mostly to timing functions, and operations where Javascript is loading data from some other website.
-
-### Why doesn't Javascript wait for these operations to complete before going to the next line of code?
-
-Because otherwise the webpage would just "hang" until the operation completes. The browser can't do anything while Javascript is actively running. We've seen this when we've encountered infinite `while` loops. Asynchronicity is a way of preventing the computer from freezing.
-
-This risk is greatest when Javascript is making requests to other webpages. There's no way of knowing how long the request will take to complete. It could be near-instant, but if the target server is having a bad day, it could take who-knows-how-long. You don't want the operability of your computer to be at the mercy of some random computer somewhere else.
-
-In this small app we made, anything we want to be sure happens **after** those 5 seconds of computing should go inside the callback of the `setTimeout`. This way, we can be certain that it will run only when the 5 seconds are up.
 
 ## Sample Quiz Questions
 
 1. What is the difference between synchronous and asynchronous program execution?
 2. Define a function that takes a function as an argument and invokes the argument when the function is called.
 
-
-
 ## Additional Practice
 
 * [Timer JS](https://github.com/ga-wdi-exercises/timer_js) (Practice with Timers)
+
+## Homework [Pixart](https://github.com/ga-wdi-exercises/pixart_js)
