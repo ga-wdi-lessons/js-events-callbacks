@@ -19,10 +19,8 @@
 
 ## Framing (2:30 - 2:35, 5 minutes)
 
-In order to do things on the client side and give our web applications behavior, we need programmatic access to the HTML and CSS using Javascript. Enter the **document object model**, more commonly known as **the DOM**. This powerful tool allows Javascript to interface with our HTML. Now we have the ability to generate functionality that can act on HTML elements or be activated by HTML elements.
+In order to do things on the client side and give our web applications behavior, we need programmatic access to the HTML and CSS using Javascript. Javascript gives us not only the ability to manipulate the **DOM** as we've seen, but also to make it respond to user actions. This is where events come in: we can *listen* for certain kinds of user-driven events, such as clicking a button, entering data into a form, keypresses, and many, many more.
 
-**Why do we as web developers want to be able to interact with our HTML elements**
-* What benefits can you think of?
 
 ## User Interaction
 
@@ -34,15 +32,19 @@ For example, let's say we have a single button on our landing page, we need to w
 
 Javascript typically will run top-to-bottom, however, we as developers have no idea when the code related to the button click will actually be executed, it's totally dependent on the user. Therefore, we need to write code that will execute asynchronously, and not hold up the rest of our application.
 
-Javascript as a language was built with this problem in mind and has spawned many more solutions that have been introduced through libraries, packages, and frameworks. Together, these tools provide some abstractions to interact with events. As such, we as developers can listen to and respond to these events.
+Javascript as a language was built with this problem in mind and has spawned many more solutions that have been introduced through libraries, packages, and frameworks. Together, these tools provide some abstractions to interact with events. As such, we as developers can write code to listen for and respond to these events.
 
 Today, we will get practice writing the underlying code responsible for adding behavior to a webpage with jQuery.
 
-**Q**. Thinking programmatically, at a high level what are 4 things that we need to account for in order to have some code run as soon as a user clicks on a button?
+## jQuery and Vanilla Javascript
+
+Note that we are using jQuery for this lesson; one thing to note about jQuery is that it is a **library** written in javascript that allows us to do more with less code. There may be situations where we'd want to use vanilla javascript over jQuery to write our code; these might include reverse compatibility (older versions of IE) and potentially performance. Check out [this](http://youmightnotneedjquery.com/) website for side-by-side comparisons of jQuery and vanilla javascript.
+
+Interspersed throughout the lesson are examples in vanilla javascript that are equivalent to jQuery implementations.
+
+In general, mixing vanilla javascript expressions with jQuery will usually result in errors. Stick with jQuery for now.
 
 ## Set Up (2:35 - 2:40, 5 minutes)
-
-Now let's see this example in action!
 
 For this lesson we'll be working with only two files: `index.html` and `script.js`. Create these files in your a folder in your sandbox directory...
 
@@ -219,14 +221,18 @@ Let's refresh our pages and then discuss the result. What was different? Why?
 > You'll notice that "I was clicked!" pops up immediately upon reload. Also note that the event while it does fire, isn't doing anything. When we include `()` we invoke the function expression. Without the `()`, we're using the function expression as a reference.
 
 
-## Break (3:20 - 3:30, 10 minutes)
+## Break (3:10 - 3:20, 10 minutes)
 
-### You Do: Color Scheme Switcher (3:30 - 4:00, 30 minutes)
+### You Do: Color Scheme Switcher (3:20 - 3:50, 30 minutes)
 
 Clone this repo and follow the readme instructions: **[Color Scheme Switcher](https://github.com/ga-dc/color-scheme-switcher)**.
 
 
-### `$(this)` (4:00 - 4:05, 5 minutes)
+### `$(this)` (3:50 - 3:55, 5 minutes)
+
+In programming, we will see the keyword `this` quite a bit, especially when we get to object-oriented programming. It's closely related to the idea of **scope**, or where we are in a program during its execution. This will be covered in  detail during the lesson on scope and closures.
+
+With that in the back of our minds, let's have a look at how we can use `this` or rather, `$(this)` in jQuery.
 
 Back in the code we were using in-class...
 
@@ -244,7 +250,7 @@ Try this-- insert the following line anywhere in our click-handler:
 
 In the context of an event listener callback, `$(this)` always refers to the object that triggered the event.
 
-### You Do: `this` Practice (4:05 - 4:15, 10 minutes)
+### You Do: `this` Practice (3:55 - 4:05, 10 minutes)
 
 Clone and follow the instructions in this [repository](https://github.com/ga-wdi-exercises/events-this-practice).
 
@@ -262,9 +268,54 @@ var buttons = $("li").on("click", function () {
 `
 </details>
 
+### Event Defaults (4:05 - 4:10, 5 minutes)
 
+Back in the code we were using in-class, replace your button with a link to Google...
 
-### The Event Object (4:15 - 4:20, 5 minutes)
+```html
+<body>
+  <a href="http://google.com">Click me!</a>
+</body>
+```
+
+Now, add an event listener to that link that brings up a `prompt` box, asking the user if they want to go to Google...
+
+```js
+var link = $("a")
+var handleClickEvent = function(e){
+  var input = prompt("You sure you want to go to Google?")
+}
+link.on("click", handleClickEvent);
+```
+
+The problem is we don't know how to stop them from going to Google! They go anyway, whether they hit "OK" or "Cancel".
+
+Some elements, like `<a>`, have a default action they perform. In this case, that action is "going to another webpage." You can prevent that default action with an Event property called `preventDefault`.
+
+```js
+var link = $("a")
+var handleClickEvent = function(e){
+  e.preventDefault();
+  var input = prompt("You sure you want to go to Google?")
+}
+link.on("click", handleClickEvent);
+```
+
+Now, no matter what the user clicks, they won't go to Google.
+
+In order to make it so they that **do** go to Google on clicking OK, but **don't** on clicking 'Cancel', we can use the fact that when you click 'Cancel' on a `prompt`, it returns `null`...
+
+```js
+var button = $("a")
+var handleClickEvent = function(e){
+  if(prompt("You sure you want to go to Google?") === null){
+    e.preventDefault();
+  }
+}
+button.on("click", handleClickEvent);
+```
+
+### The Event Object (4:10 - 4:15, 5 minutes)
 
 Now, you're going to make a small change by adding an argument to the anonymous function and printing it to the console...
 
@@ -280,7 +331,7 @@ button.on("click", handleClickEvent);
 The `evt` stands for `event`.
 > The reason we're not actually using `event` is that it's a "reserved word" in Javascript, like "if" and "return".
 
-#### You Do: Explore The Event Object (4:20 - 4:25, 5 minutes)
+#### You Do: Explore The Event Object (4:15 - 4:20, 5 minutes)
 
 With your partner, spend two minutes clicking the button and exploring what properties the event (or `evt`) object contains. Look for...
 
@@ -288,7 +339,7 @@ With your partner, spend two minutes clicking the button and exploring what prop
 * A way to tell the position of the mouse when it clicked.
 * One other piece of useful or interesting information.
 
-### Key Events (4:25 - 4:40, 15 minutes)
+### Key Events (4:20 - 4:35, 15 minutes)
 
 Let's explore some other events. Add a text input field into the HTML:
 
@@ -354,54 +405,61 @@ There are a bunch of different browser events you can use in Javascript, all [li
 
 > Some programmers have qualms with W3Schools since they're mooching off the name of the W3 without actually being related to them. However, this list is accurate and easy-to-read.
 
-## Break (4:40 - 4:50, 10 minutes)
+## Break (4:35 - 4:45, 10 minutes)
 
-### Event Defaults (4:50 - 4:55, 5 minutes)
+## Timing Functions (4:45 - 4:55, 10 minutes)
 
-Back in the code we were using in-class, replace your button with a link to Google...
+Let's look at timing functions -- that is, Javascript's way of making something happen every `x` seconds.
+
+Replace the contents of your `script.js` with this:
+
+```js
+function sayHello(){
+  console.log("Hi there!")
+}
+setInterval(sayHello, 1000);
+```
+
+### Turn and Talk
+
+* What does the number in `setInterval` indicate?
+* Replace `setInterval` with `setTimeout`. What's the difference?
+
+We'll make it more interesting by having the timer start on a click event, and stop on another click event.
+
+Put a "start" and a "stop" button in your HTML...
 
 ```html
-<body>
-  <a href="http://google.com">Click me!</a>
-</body>
+<button id="start">Start</button>
+<button id="stop">Stop</button>
 ```
 
-Now, add an event listener to that link that brings up a `prompt` box, asking the user if they want to go to Google...
+Then, replace the contents of your `script.js` with this...
 
 ```js
-var link = $("a")
-var handleClickEvent = function(e){
-  var input = prompt("You sure you want to go to Google?")
+var start = $("#start");
+var stop = $("#stop");
+var singAnnoyingSong = function(){
+  console.log("I know a song that gets on everybody's nerves...")
 }
-link.on("click", handleClickEvent);
+var songTimer;
+start.on("click", function(){
+  songTimer = setInterval(singAnnoyingSong, 100);
+});
+
+stop.on("click", function(){
+  clearInterval(songTimer);
+});
 ```
 
-The problem is we don't know how to stop them from going to Google! They go anyway, whether they hit "OK" or "Cancel".
+### Turn and Talk
 
-Some elements, like `<a>`, have a default action they perform. In this case, that action is "going to another webpage." You can prevent that default action with an Event property called `preventDefault`.
-
-```js
-var link = $("a")
-var handleClickEvent = function(e){
-  e.preventDefault();
-  var input = prompt("You sure you want to go to Google?")
-}
-link.on("click", handleClickEvent);
-```
-
-Now, no matter what the user clicks, they won't go to Google.
-
-In order to make it so they that **do** go to Google on clicking OK, but **don't** on clicking 'Cancel', we can use the fact that when you click 'Cancel' on a `prompt`, it returns `null`...
-
-```js
-var button = $("a")
-var handleClickEvent = function(e){
-  if(prompt("You sure you want to go to Google?") === null){
-    e.preventDefault();
-  }
-}
-button.on("click", handleClickEvent);
-```
+* What happens when you click the "start" button a bunch of times in a row?
+  * Why?
+  * How is this different from events?
+  * When you do this, why doesn't the "stop" button seem to work?
+* What does `clearInterval` do?
+* Give the anonymous function callbacks an argument of `evt`, like we did for the event listeners, and print it to the console. What information does it contain?
 
 
 ## Asynchronicity (4:55 - 5:00, 5 minutes)
