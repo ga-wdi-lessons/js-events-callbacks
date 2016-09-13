@@ -232,11 +232,11 @@ button.on("click", handleClickEvent());
 
 ## Break (10 minutes / 0:50)
 
-### You Do: [Color Scheme Switcher](https://github.com/ga-dc/color-scheme-switcher) (30 minutes / 1:20)
+### You Do: [Color Scheme Switcher](https://github.com/ga-dc/color-scheme-switcher) (20 minutes / 1:10)
 
-> 20 minutes exercise. 10 minutes review.
+> 15 minutes exercise. 5 minutes review.
 
-### `$(this)` (5 minutes / 0:55)
+### `$(this)` (5 minutes / 1:15)
 
 Let's switch back to our `events-callbacks-practice` code.
 
@@ -268,7 +268,7 @@ Refresh the page. What do you see when you click the button?
 
 </details>
 
-### You Do: [`this` Practice](https://github.com/ga-wdi-exercises/events-this-practice) (10 minutes / 1:05)
+### You Do: [`this` Practice](https://github.com/ga-wdi-exercises/events-this-practice) (10 minutes / 1:25)
 
 Clone and follow the instructions in this [repository](https://github.com/ga-wdi-exercises/events-this-practice).
 
@@ -287,59 +287,6 @@ Clone and follow the instructions in this [repository](https://github.com/ga-wdi
   ```
 
 </details>
-
-### Event Defaults (10 minutes / 1:15)
-
-Back to our in-class code. In `index.html`, replace your button with a link to Google...
-
-```html
-<body>
-  <a href="http://google.com">Click me!</a>
-</body>
-```
-
-Now, add an event listener to that link that brings up a `prompt` box, asking the user if they want to go to Google...
-
-```js
-var link = $("a");
-var handleClickEvent = function(evt){
-  var input = prompt("You sure you want to go to Google?");
-}
-link.on("click", handleClickEvent);
-```
-
-The problem is we don't know how to stop them from going to Google! They go anyway, whether they hit "OK" or "Cancel".
-
-Some elements have a default action they perform. In the case of `<a>`, that action is going to another webpage. You can prevent that default action with an Event method called `preventDefault`.
-
-```js
-var link = $("a")
-var handleClickEvent = function(e){
-  e.preventDefault();
-  prompt("You sure you want to go to Google?")
-}
-link.on("click", handleClickEvent);
-```
-
-> Event is a Javascript "class" from which all Javascript events are generated. That will make more sense later on in the course. If you're curious, however, try `console.log(e)` inside of the event listener and see what happens.
-
-Now, no matter what the user clicks, they won't go to Google.
-
-In order to make it so they that **do** go to Google on clicking OK, but **don't** on clicking 'Cancel', we can use the fact that when you click 'Cancel' on a `prompt`, it returns `null`...
-
-```js
-var link = $("a")
-var handleClickEvent = function(e){
-  if(prompt("You sure you want to go to Google?") === null){
-    e.preventDefault();
-  }
-}
-button.on("click", handleClickEvent);
-```
-
-<!-- AM: What would be a good CFU? -->
-
-## Break (10 minutes / 1:25)
 
 ## Timing Functions (15 minutes / 1:40)
 
@@ -408,7 +355,7 @@ What does `clearInterval` do?
 
 Give the anonymous function callbacks an argument of `evt`, like we did for the event listeners, and print it to the console. What information does it contain?
 
-## Demo: Asynchronicity with Timers (5 minutes / 1:45)
+## Demo: Asynchronicity with Timers
 
 Run the next bit of code and you can see asynchronous program execution.
 
@@ -438,7 +385,60 @@ This risk is greatest when Javascript is making requests to other webpages. Ther
 
 In this small app we made, anything we want to be sure happens **after** those 5 seconds of computing should go inside the callback of the `setTimeout`. This way, we can be certain that it will run only when the 5 seconds are up.
 
-## You Do: [TimerJS](https://github.com/ga-wdi-exercises/timer_js) (40 minutes / 1:25)
+## You Do: [TimerJS](https://github.com/ga-wdi-exercises/timer_js) (40 minutes / 1:20)
+
+-------
+
+# Additional Topics
+
+### Event Defaults (10 minutes) (Bonus)
+
+Back to our in-class code. In `index.html`, replace your button with a link to Google...
+
+```html
+<body>
+  <a href="http://google.com">Click me!</a>
+</body>
+```
+
+Now, add an event listener to that link that brings up a `prompt` box, asking the user if they want to go to Google...
+
+```js
+var link = $("a");
+var handleClickEvent = function(evt){
+  var input = prompt("You sure you want to go to Google?");
+}
+link.on("click", handleClickEvent);
+```
+
+The problem is we don't know how to stop them from going to Google! They go anyway, whether they hit "OK" or "Cancel".
+
+Some elements have a default action they perform. In the case of `<a>`, that action is going to another webpage. You can prevent that default action with an Event method called `preventDefault`.
+
+```js
+var link = $("a")
+var handleClickEvent = function(e){
+  e.preventDefault();
+  prompt("You sure you want to go to Google?")
+}
+link.on("click", handleClickEvent);
+```
+
+> Event is a Javascript "class" from which all Javascript events are generated. That will make more sense later on in the course. If you're curious, however, try `console.log(e)` inside of the event listener and see what happens.
+
+Now, no matter what the user clicks, they won't go to Google.
+
+In order to make it so they that **do** go to Google on clicking OK, but **don't** on clicking 'Cancel', we can use the fact that when you click 'Cancel' on a `prompt`, it returns `null`...
+
+```js
+var link = $("a")
+var handleClickEvent = function(e){
+  if(prompt("You sure you want to go to Google?") === null){
+    e.preventDefault();
+  }
+}
+button.on("click", handleClickEvent);
+```
 
 ### The Event Object (5 minutes) (Bonus)
 
@@ -541,9 +541,5 @@ There are several other events that come up with the `input` tag. See if you can
 2. Define a function that takes a function as an argument and invokes the argument when the function is called.
 3. What arguments does `setInterval` take?
 4. What is the different between `setInterval` and `setTimeout`?
-
-## Additional Practice
-
-* [Timer JS](https://github.com/ga-wdi-exercises/timer_js)
 
 ## Homework [Pixart](https://github.com/ga-wdi-exercises/pixart_js)
