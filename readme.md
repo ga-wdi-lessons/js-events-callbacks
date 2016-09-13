@@ -80,9 +80,7 @@ $(document).on("ready", function() {
 })
 ```
 
-#### `$(document).ready()`
-
-In order to use jQuery to select elements and add event listeners, we need to make sure that the **page's content is fully loaded** and the page is "ready" for DOM traversal and manipulation.
+> In order to use jQuery to select elements and add event listeners, we need to make sure that the **page's content is fully loaded** and the page is "ready" for DOM traversal and manipulation. We can do this by wrapping code inside of `$(document).on("ready", function(){})`.
 
 ## You Do: What Is An Event? (5 minutes / 0:10)
 
