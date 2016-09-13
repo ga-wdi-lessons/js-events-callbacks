@@ -151,7 +151,7 @@ button.on( "click", handleClickEvent );
 
 <details>
 
-  <summary>Vanilla Javascript implementation</summary>
+  <summary><strong>Vanilla Javascript implementation</strong></summary>
 
   ```js
   var button = document.querySelector("button")
@@ -166,7 +166,7 @@ The first component is the HTML element we are applying the listener to. In this
 
 <details>
 
-  <summary>Vanilla Javascript implementation</summary>
+  <summary><strong>Vanilla Javascript implementation</strong></summary>
 
   ```js
   var button = document.querySelector("button");
@@ -180,7 +180,7 @@ Next is the jQuery method that allows us to create event listeners: `.on()`. It 
 
 <details>
 
-  <summary>Vanilla Javascript implementation</summary>
+  <summary><strong>Vanilla Javascript implementation</strong></summary>
 
   ```js
   button.addEventListener("click", handleClickEvent);
