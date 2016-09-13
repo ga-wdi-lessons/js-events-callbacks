@@ -262,7 +262,7 @@ Refresh the page. What do you see when you click the button?
 
 <details>
 
-  <summary>With that in mind, how would you define `this` in the context of an event listener?</summary>
+  <summary><strong>With that in mind, how would you define `this` in the context of an event listener?</strong></summary>
 
   In the context of an event listener callback, `$(this)` always refers to the object that triggered the event.
 
@@ -272,9 +272,7 @@ Refresh the page. What do you see when you click the button?
 
 Clone and follow the instructions in this [repository](https://github.com/ga-wdi-exercises/events-this-practice).
 
-#### Bonus: [Implement `this` in Color Picker](https://github.com/ga-dc/color-scheme-switcher)
-
-If you have time, try implementing `this` in [Color Scheme Switcher](https://github.com/ga-dc/color-scheme-switcher).
+### Bonus: [Implement `this` in Color Picker](https://github.com/ga-dc/color-scheme-switcher)
 
 <details>
 
@@ -338,6 +336,9 @@ var handleClickEvent = function(e){
 }
 button.on("click", handleClickEvent);
 ```
+
+<!-- AM: What would be a good CFU? -->
+
 ## Break (10 minutes / 1:25)
 
 ## Timing Functions (15 minutes / 1:40)
