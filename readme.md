@@ -45,19 +45,17 @@ In general, mixing vanilla javascript expressions with jQuery will usually resul
 
 ### We Do: Set Up
 
-For this lesson we'll be working with only two files: `index.html` and `script.js`. Create these files in your a folder in your sandbox directory...
+For this lesson we'll be working with only two files: `index.html` and `script.js`. We've already created these for you and included some starter code. Clone them down using the following Terminal command...
 
 ```bash
-$ cd ~/wdi/sandbox
-$ mkdir events-callbacks-practice
-$ cd events-callbacks-practice
-$ touch index.html script.js
+$ git clone git@github.com:ga-wdi-exercises/events-callbacks-practice.git
 ```
 
-Next, set up your `index.html` file, making sure to include a button, a link to `script.js` and load in jQuery...
+You should see this in `index.html`...
 
 ```html
 <!-- index.html -->
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -66,8 +64,8 @@ Next, set up your `index.html` file, making sure to include a button, a link to 
   </head>
   <body>
     <button>Click me!</button>
-    <script src="script.js"></script>
   </body>
+  <script src="script.js"></script>
 </html>
 ```
 
@@ -75,12 +73,9 @@ Now let's put a simple block of code in `script.js` to make sure it's properly l
 
 ```js
 // script.js
-$(document).on("ready", function() {
-  console.log( "The page's contents have finished loading!" );
-})
-```
 
-> In order to use jQuery to select elements and add event listeners, we need to make sure that the **page's content is fully loaded** and the page is "ready" for DOM traversal and manipulation. We can do this by wrapping code inside of `$(document).on("ready", function(){})`.
+console.log( "The page's contents have finished loading!" );
+```
 
 ## You Do: What Is An Event? (5 minutes / 0:10)
 
@@ -119,9 +114,15 @@ We want our "click handler" -- what we're calling this event listener -- to trig
 var button = $("button");
 ```
 
-> `.$()` selects all HTML elements matching the passed-in argument. The return value is a **jQuery object**. In the above example, it contains `<button>`. You can also pass in a class (e.g., `$(".exampleClass")`). With an id (e.g., `$("#exampleId")`), `$()` will select the first id that matches.  
+<details>
 
-> To deal with jQuery `$()` returning things in an array, we have a special jQuery method called [`.eq()`](https://api.jquery.com/eq/) that allows us to isolate a jQuery object in the collection. Do not use `[]`.  
+  <summary><strong>What exactly is being saved to `var button`?</strong></summary>
+
+  > `.$()` selects all HTML elements matching the passed-in argument. The return value is a **jQuery object**. In the above example, it contains `<button>`. You can also pass in a class (e.g., `$(".exampleClass")`). With an id (e.g., `$("#exampleId")`), `$()` will select the first id that matches.  
+
+  > To deal with jQuery `$()` returning things in an array, we have a special jQuery method called [`.eq()`](https://api.jquery.com/eq/) that allows us to isolate a jQuery object in the collection. Do not use `[]`.  
+
+</details>
 
 <details>
 
@@ -262,9 +263,17 @@ Refresh the page. What do you see when you click the button?
 
 <details>
 
-  <summary><strong>With that in mind, how would you define `this` in the context of an event listener?</strong></summary>
+  <summary><strong>With that in mind, how would you explain `this` in the context of an event listener?</strong></summary>
 
   In the context of an event listener callback, `$(this)` always refers to the object that triggered the event.
+
+</details>
+
+<details>
+
+  <summary><strong>What is the difference between `$(this)` and `this`?</strong></summary>
+
+  `$(this)` returns a jQuery object. `this` returns a vanilla Javascript object.
 
 </details>
 
@@ -281,7 +290,7 @@ Clone and follow the instructions in this [repository](https://github.com/ga-wdi
   If you're curious, here's a short solution to the earlier Color Scheme Switcher exercise that makes use of `this`. Keep in mind, this is advanced! You are not expected to be able to write code like this yet.  
 
   ```js
-  var buttons = $("li").on("click", function () {
+  $("li").on("click", function () {
     $("body").attr("class", $(this).attr("class"));
   });
   ```
@@ -342,6 +351,8 @@ stop.on("click", function(){
 });
 ```
 
+> We define `songTimer` outside of the final two event listeners because we need to be able to access it within both event listeners. This will make more sense when we discuss scope during tomorrow's class.
+
 ### Turn And Talk
 
 Refresh the page. Observe and spend three minutes answering the following questions...
@@ -393,7 +404,7 @@ In this small app we made, anything we want to be sure happens **after** those 5
 
 ### Event Defaults (10 minutes) (Bonus)
 
-Back to our in-class code. In `index.html`, replace your button with a link to Google...
+In `index.html`, replace your button with a link to Google...
 
 ```html
 <body>
@@ -540,6 +551,6 @@ There are several other events that come up with the `input` tag. See if you can
 1. What is the difference between synchronous and asynchronous program execution?
 2. Define a function that takes a function as an argument and invokes the argument when the function is called.
 3. What arguments does `setInterval` take?
-4. What is the different between `setInterval` and `setTimeout`?
+4. What is the difference between `setInterval` and `setTimeout`?
 
-## Homework [Pixart](https://github.com/ga-wdi-exercises/pixart_js)
+## Homework: [Pixart](https://github.com/ga-wdi-exercises/pixart_js)
