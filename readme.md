@@ -25,7 +25,7 @@ In order to do things on the client side and give our web applications behavior,
 
 As we write client-side Javascript (javascript that is executed by *our browsers*, as opposed to being executed by a server we are accessing), it is very important to keep the user's actions in mind when designing our app's UI.
 
-For example, let's say we have a single button on our landing page, we need to write some code that will execute whenever a user clicks on that button.
+For example, [let's say we have a single button](http://codepen.io/amaseda/pen/VKaLJk) on our landing page, we need to write some code that will execute whenever a user clicks on that button.
 
 ### What is Asynchronicity?
 
