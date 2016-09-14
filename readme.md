@@ -312,6 +312,7 @@ setInterval(sayHello, 1000);
 
 Refresh the page. Spend two minutes observing and answering the following questions...
 
+* What does `setInterval` do?
 * What does the number in `setInterval` indicate?
 * Replace `setInterval` with `setTimeout`. What's the difference?
 
