@@ -126,7 +126,7 @@ var button = $("button");
 
 <details>
 
-  <summary>How do we select elements in jQuery vs. vanilla Javascript?</summary>
+  <summary><strong>How do we select elements in jQuery vs. vanilla Javascript?</strong></summary>
 
   > In vanilla javascript, we would use `.querySelector()`, however in jQuery we ***wrap it in ca$h*** using the `$()` function which has some added functionality than its vanilla js counterpart. If `.querySelector()` were a kitchen knife, `$()` would be a swiss army knife or a multi-tool.
 
@@ -147,7 +147,7 @@ function handleClickEvent(){
 Now for the big step: linking our behavior with a button click. Let's look at that event listener again and go over each component...
 
 ```js
-button.on( "click", handleClickEvent );
+button.on("click", handleClickEvent);
 ```
 
 <details>
@@ -279,8 +279,6 @@ Refresh the page. What do you see when you click the button?
 
 ### You Do: [`this` Practice](https://github.com/ga-wdi-exercises/events-this-practice) (10 minutes / 1:25)
 
-Clone and follow the instructions in this [repository](https://github.com/ga-wdi-exercises/events-this-practice).
-
 ### Bonus: [Implement `this` in Color Picker](https://github.com/ga-dc/color-scheme-switcher)
 
 <details>
@@ -357,14 +355,14 @@ stop.on("click", function(){
 
 Refresh the page. Observe and spend three minutes answering the following questions...
 
-What happens when you click the "start" button a bunch of times in a row?
+**What happens when you click the "start" button a bunch of times in a row?**
 * Why?
 * How is this different from events?
 * When you do this, why doesn't the "stop" button seem to work?
 
-What does `clearInterval` do?
+**What does `clearInterval` do?**
 
-Give the anonymous function callbacks an argument of `evt`, like we did for the event listeners, and print it to the console. What information does it contain?
+**Give the anonymous function callbacks an argument of `evt`, like we did for the event listeners, and print it to the console. What information does it contain?**
 
 ## Demo: Asynchronicity with Timers
 
@@ -396,7 +394,7 @@ This risk is greatest when Javascript is making requests to other webpages. Ther
 
 In this small app we made, anything we want to be sure happens **after** those 5 seconds of computing should go inside the callback of the `setTimeout`. This way, we can be certain that it will run only when the 5 seconds are up.
 
-## You Do: [TimerJS](https://github.com/ga-wdi-exercises/timer_js) (40 minutes / 1:20)
+## You Do: [TimerJS](https://github.com/ga-wdi-exercises/timer_js) (40 minutes / 2:20)
 
 -------
 
