@@ -362,8 +362,6 @@ Refresh the page. Observe and spend three minutes answering the following questi
 
 **What does `clearInterval` do?**
 
-**Give the anonymous function callbacks an argument of `evt`, like we did for the event listeners, and print it to the console. What information does it contain?**
-
 ## Demo: Asynchronicity with Timers
 
 Run the next bit of code and you can see asynchronous program execution.
