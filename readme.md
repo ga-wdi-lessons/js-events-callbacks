@@ -72,7 +72,10 @@ Now let's put a simple block of code in `script.js` to make sure it's properly l
 ```js
 // script.js
 
-console.log( "The page's contents have finished loading!" );
+
+$(document).ready(function(){
+  console.log( "The page's contents have finished loading!" );
+});
 ```
 
 ## You Do: What Is An Event? (5 minutes / 0:10)
