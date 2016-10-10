@@ -37,18 +37,16 @@ Today, we will get practice writing the underlying code responsible for adding b
 
 ### jQuery and Vanilla Javascript
 
-Note that we are using jQuery for this lesson. jQuery is a **library** written in javascript that allows us to do more with less code. There may be situations where we'd want to use vanilla javascript over jQuery to write our code. These might include performance in large-scale apps and reverse compatibility (older versions of IE). Check out [this](http://youmightnotneedjquery.com/) website for side-by-side comparisons of jQuery and vanilla javascript.
+Note that we are using jQuery for this lesson. jQuery is a **library** written in javascript that allows us to do more with less code. There may be situations where we'd want to use vanilla javascript over jQuery to write our code. This might include reverse compatibility (older versions of IE). Check out [this](http://youmightnotneedjquery.com/) website for side-by-side comparisons of jQuery and vanilla javascript.
 
 Interspersed throughout the lesson are examples in vanilla javascript that are equivalent to jQuery implementations.
-
-In general, mixing vanilla javascript expressions with jQuery will usually result in errors. Stick with jQuery for now.
 
 ### We Do: Set Up
 
 For this lesson we'll be working with only two files: `index.html` and `script.js`. We've already created these for you and included some starter code. Clone them down using the following Terminal command...
 
 ```bash
-$ git clone git@github.com:ga-wdi-exercises/events-callbacks-practice.git
+$ git clone https://github.com/ga-wdi-exercises/events-callbacks-practice.git
 ```
 
 You should see this in `index.html`...
@@ -79,7 +77,7 @@ console.log( "The page's contents have finished loading!" );
 
 ## You Do: What Is An Event? (5 minutes / 0:10)
 
-But first, a question for you: **What is an event?** Spend two minutes doing the following tasks. You are encouraged to discuss your findings with a partner during the exercise.
+But first, a question for you: **What is an event (on a webpage)?** Spend two minutes doing the following tasks. You are encouraged to discuss your findings with a partner during the exercise.
 
 1. Come up with your own definition without looking at any other sources. Don't worry about getting it right -- what do you **think** an event is?
 2. Now, find (i.e., Google) some documentation on Javascript events. Does that information match your definition? How would you change it?
@@ -118,7 +116,7 @@ var button = $("button");
 
   <summary><strong>What exactly is being saved to `var button`?</strong></summary>
 
-  > `.$()` selects all HTML elements matching the passed-in argument. The return value is a **jQuery object**. In the above example, it contains `<button>`. You can also pass in a class (e.g., `$(".exampleClass")`). With an id (e.g., `$("#exampleId")`), `$()` will select the first id that matches.  
+  > `$()` selects all HTML elements matching the passed-in argument. The return value is a **jQuery object**. In the above example, it contains `<button>`. You can also pass in a class (e.g., `$(".exampleClass")`). With an id (e.g., `$("#exampleId")`), `$()` will select the first id that matches.  
 
   > To deal with jQuery `$()` returning things in an array, we have a special jQuery method called [`.eq()`](https://api.jquery.com/eq/) that allows us to isolate a jQuery object in the collection. Do not use `[]`.  
 
@@ -358,7 +356,6 @@ Refresh the page. Observe and spend three minutes answering the following questi
 
 **What happens when you click the "start" button a bunch of times in a row?**
 * Why?
-* How is this different from events?
 * When you do this, why doesn't the "stop" button seem to work?
 
 **What does `clearInterval` do?**
