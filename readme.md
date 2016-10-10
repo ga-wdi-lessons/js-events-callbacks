@@ -437,9 +437,9 @@ In order to make it so they that **do** go to Google on clicking OK, but **don't
 
 ```js
 var link = $("a")
-var handleClickEvent = function(e){
+var handleClickEvent = function(evt){
   if(prompt("You sure you want to go to Google?") === null){
-    e.preventDefault();
+    evt.preventDefault();
   }
 }
 button.on("click", handleClickEvent);
