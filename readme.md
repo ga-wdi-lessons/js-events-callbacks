@@ -12,7 +12,6 @@
 * Explain why callbacks are important to asynchronous program flow.
 * Pass a named function as a callback to **another** function.
 * Identify when to **reference** a function and when to **invoke** a function.
-* Describe what an anonymous function is and when you would use one.
 * Pass an anonymous function as a callback to another function.
 * Define what `this` represents in the context of an event listener.
 * Describe the difference between asynchronous and synchronous program execution.
