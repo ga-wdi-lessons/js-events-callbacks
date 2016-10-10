@@ -71,8 +71,6 @@ Now let's put a simple block of code in `script.js` to make sure it's properly l
 
 ```js
 // script.js
-
-
 $(document).ready(function(){
   console.log( "The page's contents have finished loading!" );
 });
