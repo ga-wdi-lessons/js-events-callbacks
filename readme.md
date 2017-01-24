@@ -1,11 +1,5 @@
 # Events and Callbacks
 
-## Screencasts
-
-* [Robin's Screencast](https://youtu.be/S4Xvo_m6P04)
-* [Andy's Screencast (Part I)](https://www.youtube.com/watch?v=xogI6prB-PI)
-* [Andy's Screencast (Part II)](https://www.youtube.com/watch?v=Srd2Tx1Z7v8)
-
 ## Learning Objectives
 
 * Explain the concept of a 'callback' and how we can pass functions as arguments to other functions.
@@ -18,11 +12,11 @@
 
 ## Framing (5 minutes / 0:05)
 
-In order to do things on the client side and give our web applications behavior, we need programmatic access to the HTML and CSS using Javascript. Javascript gives us not only the ability to manipulate the **DOM** as we've seen, but also to make it respond to user actions. This is where events come in: we can *listen* for certain kinds of user-driven events, such as clicking a button, entering data into a form, keypresses, and many, many more.
+In order to do things on the client side and give our web applications behavior, we need programmatic access to the HTML and CSS using Javascript. Javascript gives us not only the ability to manipulate the **DOM**, but also to make it respond to user actions. This is where events come in: we can *listen* for certain kinds of user-driven events, such as clicking a button, entering data into a form, keypresses and many, many more.
 
 ### User Interaction
 
-As we write client-side Javascript (javascript that is executed by *our browsers*, as opposed to being executed by a server we are accessing), it is very important to keep the user's actions in mind when designing our app's UI.
+As we write client-side Javascript -- javascript that is executed by *our browsers* -- it is very important to keep the user's actions in mind when designing our app's UI.
 
 For example, let's say we have a single button on our landing page, we need to write some code that will execute whenever a user clicks on that button.
 
@@ -36,9 +30,9 @@ Today, we will get practice writing the underlying code responsible for adding b
 
 ### jQuery and Vanilla Javascript
 
-Note that we are using jQuery for this lesson. jQuery is a **library** written in javascript that allows us to do more with less code. There may be situations where we'd want to use vanilla javascript over jQuery to write our code. This might include reverse compatibility (older versions of IE). Check out [this](http://youmightnotneedjquery.com/) website for side-by-side comparisons of jQuery and vanilla javascript.
+Note that we are using jQuery for this lesson. jQuery is a **library** written in javascript that allows us to do more with less code. Check out [this](http://youmightnotneedjquery.com/) website for side-by-side comparisons of jQuery and vanilla javascript.
 
-Interspersed throughout the lesson are examples in vanilla javascript that are equivalent to jQuery implementations.
+Interspersed throughout the lesson are examples in vanilla Javascript that are equivalent to jQuery implementations.
 
 ### We Do: Set Up
 
@@ -66,6 +60,8 @@ You should see this in `index.html`...
 </html>
 ```
 
+<!-- AM: Use/don't use document.ready depending on how Andy teaches it -->
+
 Now let's put a simple block of code in `script.js` to make sure it's properly linked to `index.html`...
 
 ```js
@@ -79,7 +75,7 @@ $(document).ready(function(){
 
 But first, a question for you: **What is an event (on a webpage)?** Spend two minutes doing the following tasks. You are encouraged to discuss your findings with a partner during the exercise.
 
-1. Come up with your own definition without looking at any other sources. Don't worry about getting it right -- what do you **think** an event is?
+1. Come up with your own definition without looking at any other sources. Don't worry about getting it right -- what do you think an event is?
 2. Now, find (i.e., Google) some documentation on Javascript events. Does that information match your definition? How would you change it?
 3. Write down three examples of an event.  
 
@@ -354,8 +350,7 @@ stop.on("click", function(){
 
 Refresh the page. Observe and spend three minutes answering the following questions...
 
-**What happens when you click the "start" button a bunch of times in a row?**
-* Why?
+* What happens when you click the "start" button a bunch of times in a row? Why?
 * When you do this, why doesn't the "stop" button seem to work?
 
 **What does `clearInterval` do?**
@@ -548,3 +543,9 @@ There are several other events that come up with the `input` tag. See if you can
 4. What is the difference between `setInterval` and `setTimeout`?
 
 ## Homework: [Pixart](https://github.com/ga-wdi-exercises/pixart_js)
+
+## Screencasts
+
+* [Robin's Screencast](https://youtu.be/S4Xvo_m6P04)
+* [Andy's Screencast (Part I)](https://www.youtube.com/watch?v=xogI6prB-PI)
+* [Andy's Screencast (Part II)](https://www.youtube.com/watch?v=Srd2Tx1Z7v8)
