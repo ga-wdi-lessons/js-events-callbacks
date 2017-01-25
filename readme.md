@@ -398,7 +398,7 @@ In this small app we made, anything we want to be sure happens **after** those 5
 
 # Additional Topics
 
-### Event Defaults (10 minutes) (Bonus)
+### Event Defaults
 
 In `index.html`, replace your button with a link to Google...
 
@@ -447,7 +447,7 @@ var handleClickEvent = function(e){
 button.on("click", handleClickEvent);
 ```
 
-### The Event Object (5 minutes) (Bonus)
+### The Event Object
 
 Now, you're going to make a small change by adding an argument to the anonymous function and printing it to the console...
 
@@ -464,7 +464,7 @@ The `evt` stands for `event`.
 
 > The reason we're not actually using `event` is that it's a "reserved word" in Javascript, like "if" and "return".
 
-#### You Do: Explore The Event Object (5 minutes) (Bonus)
+#### Explore The Event Object
 
 With your partner, spend three minutes clicking the button and exploring what properties the event (or `evt`) object contains. Look for...
 
@@ -472,7 +472,7 @@ With your partner, spend three minutes clicking the button and exploring what pr
 * A way to tell the position of the mouse when it clicked.
 * One other piece of useful or interesting information.
 
-## Key Events (15 minutes) (Bonus)
+## Key Events
 
 Let's explore some other events. Add a text input field into `index.html`...
 
@@ -491,11 +491,11 @@ Let's explore some other events. Add a text input field into `index.html`...
 </html>
 ```
 
-#### You Do
+#### Explore Key Events
 
 With a partner, add an event listener for the `keyup` event to the input. Explore the `event` object again. **Can you find a way to tell which key was pressed?**
 
-#### We Do
+#### Review
 
 <details>
 
@@ -520,14 +520,14 @@ With a partner, add an event listener for the `keyup` event to the input. Explor
 
 </details>
 
-#### You Do
+#### Explore More Key Events
 
 Find the keyCodes for...
 * Enter
 * Tab
 * Delete
 
-#### You Do
+#### Explore Even More Key Events
 
 There are several other events that come up with the `input` tag. See if you can figure out the difference between...
 
