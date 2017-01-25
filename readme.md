@@ -1,11 +1,5 @@
 # Events and Callbacks
 
-## Screencasts
-
-* [Robin's Screencast](https://youtu.be/S4Xvo_m6P04)
-* [Andy's Screencast (Part I)](https://www.youtube.com/watch?v=xogI6prB-PI)
-* [Andy's Screencast (Part II)](https://www.youtube.com/watch?v=Srd2Tx1Z7v8)
-
 ## Learning Objectives
 
 * Explain the concept of a 'callback' and how we can pass functions as arguments to other functions.
@@ -18,11 +12,11 @@
 
 ## Framing (5 minutes / 0:05)
 
-In order to do things on the client side and give our web applications behavior, we need programmatic access to the HTML and CSS using Javascript. Javascript gives us not only the ability to manipulate the **DOM** as we've seen, but also to make it respond to user actions. This is where events come in: we can *listen* for certain kinds of user-driven events, such as clicking a button, entering data into a form, keypresses, and many, many more.
+In order to do things on the client side and give our web applications behavior, we need programmatic access to the HTML and CSS using Javascript. Javascript gives us not only the ability to manipulate the **DOM**, but also to make it respond to user actions. This is where events come in: we can *listen* for certain kinds of user-driven events, such as clicking a button, entering data into a form, keypresses and many, many more.
 
 ### User Interaction
 
-As we write client-side Javascript (javascript that is executed by *our browsers*, as opposed to being executed by a server we are accessing), it is very important to keep the user's actions in mind when designing our app's UI.
+As we write client-side Javascript -- javascript that is executed by *our browsers* -- it is very important to keep the user's actions in mind when designing our app's UI.
 
 For example, let's say we have a single button on our landing page, we need to write some code that will execute whenever a user clicks on that button.
 
@@ -36,9 +30,9 @@ Today, we will get practice writing the underlying code responsible for adding b
 
 ### jQuery and Vanilla Javascript
 
-Note that we are using jQuery for this lesson. jQuery is a **library** written in javascript that allows us to do more with less code. There may be situations where we'd want to use vanilla javascript over jQuery to write our code. This might include reverse compatibility (older versions of IE). Check out [this](http://youmightnotneedjquery.com/) website for side-by-side comparisons of jQuery and vanilla javascript.
+Note that we are using jQuery for this lesson. jQuery is a **library** written in javascript that allows us to do more with less code. Check out [this](http://youmightnotneedjquery.com/) website for side-by-side comparisons of jQuery and vanilla javascript.
 
-Interspersed throughout the lesson are examples in vanilla javascript that are equivalent to jQuery implementations.
+Interspersed throughout the lesson are examples in vanilla Javascript that are equivalent to jQuery implementations.
 
 ### We Do: Set Up
 
@@ -66,6 +60,8 @@ You should see this in `index.html`...
 </html>
 ```
 
+<!-- AM: Use/don't use document.ready depending on how Andy teaches it -->
+
 Now let's put a simple block of code in `script.js` to make sure it's properly linked to `index.html`...
 
 ```js
@@ -77,9 +73,11 @@ $(document).ready(function(){
 
 ## You Do: What Is An Event? (5 minutes / 0:10)
 
-But first, a question for you: **What is an event (on a webpage)?** Spend two minutes doing the following tasks. You are encouraged to discuss your findings with a partner during the exercise.
+> 3 minutes exercise. 2 minutes review.
 
-1. Come up with your own definition without looking at any other sources. Don't worry about getting it right -- what do you **think** an event is?
+But first, a question for you: **What is an event (on a webpage)?** Spend three minutes doing the following tasks. You are encouraged to discuss your findings with a partner during the exercise.
+
+1. Come up with your own definition without looking at any other sources. Don't worry about getting it right -- what do you think an event is?
 2. Now, find (i.e., Google) some documentation on Javascript events. Does that information match your definition? How would you change it?
 3. Write down three examples of an event.  
 
@@ -206,11 +204,13 @@ The invocation may be immediate or it might happen later. In the example above, 
 
 > We can also pass in anonymous functions (i.e., define a nameless function directly inside of the event listener) instead of previously-defined functions.
 
-### You Do: Practice (10 minutes / 0:35)
+### You Do: Practice (15 minutes / 0:40)
+
+> 10 minutes exercise. 5 minutes review.
 
 Visit this [repository](https://github.com/ga-wdi-exercises/event-listener-practice) and follow the instructions.
 
-### Callbacks: Calling vs. Referencing (5 minutes / 0:40)
+### Callbacks: Calling vs. Referencing (5 minutes / 0:45)
 
 When we call a function, we place parentheses after the function name. In the case of callbacks like `handleClickEvent`, however, there are no parens.
 
@@ -229,13 +229,13 @@ button.on("click", handleClickEvent());
 </details>
 
 
-## Break (10 minutes / 0:50)
+## Break (10 minutes / 0:55)
 
-### You Do: [Color Scheme Switcher](https://github.com/ga-dc/color-scheme-switcher) (20 minutes / 1:10)
+### You Do: [Color Scheme Switcher](https://github.com/ga-dc/color-scheme-switcher) (20 minutes / 1:15)
 
 > 15 minutes exercise. 5 minutes review.
 
-### `$(this)` (5 minutes / 1:15)
+### `$(this)` (5 minutes / 1:20)
 
 Let's switch back to our `events-callbacks-practice` code.
 
@@ -275,7 +275,9 @@ Refresh the page. What do you see when you click the button?
 
 </details>
 
-### You Do: [`this` Practice](https://github.com/ga-wdi-exercises/events-this-practice) (10 minutes / 1:25)
+### You Do: [`this` Practice](https://github.com/ga-wdi-exercises/events-this-practice) (15 minutes / 1:35)
+
+> 10 minutes exercise. 5 minutes review.
 
 ### Bonus: [Implement `this` in Color Picker](https://github.com/ga-dc/color-scheme-switcher)
 
@@ -293,7 +295,7 @@ Refresh the page. What do you see when you click the button?
 
 </details>
 
-## Timing Functions (15 minutes / 1:40)
+## Timing Functions (15 minutes / 1:50)
 
 Let's look at timing functions -- that is, Javascript's way of making something happen every `x` seconds.
 
@@ -354,11 +356,9 @@ stop.on("click", function(){
 
 Refresh the page. Observe and spend three minutes answering the following questions...
 
-**What happens when you click the "start" button a bunch of times in a row?**
-* Why?
-* When you do this, why doesn't the "stop" button seem to work?
-
-**What does `clearInterval` do?**
+* What happens when you click the start button?
+* What does `clearInterval` do?
+* What happens when you click the "start" button a bunch of times in a row?
 
 ## Demo: Asynchronicity with Timers
 
@@ -369,7 +369,7 @@ function anAsyncFunction(){
   console.log("hello")
   setTimeout(function(){
     console.log("this is happening in the middle")
-  }, 5000)
+  }, 3000)
   console.log("goodbye")
 }
 
@@ -390,13 +390,15 @@ This risk is greatest when Javascript is making requests to other webpages. Ther
 
 In this small app we made, anything we want to be sure happens **after** those 5 seconds of computing should go inside the callback of the `setTimeout`. This way, we can be certain that it will run only when the 5 seconds are up.
 
-## You Do: [TimerJS](https://github.com/ga-wdi-exercises/timer_js) (40 minutes / 2:20)
+## You Do: [TimerJS](https://github.com/ga-wdi-exercises/timer_js) (40 minutes / 2:30)
+
+> 30 minutes exercise. 10 minutes review.
 
 -------
 
 # Additional Topics
 
-### Event Defaults (10 minutes) (Bonus)
+### Event Defaults
 
 In `index.html`, replace your button with a link to Google...
 
@@ -445,7 +447,7 @@ var handleClickEvent = function(e){
 button.on("click", handleClickEvent);
 ```
 
-### The Event Object (5 minutes) (Bonus)
+### The Event Object
 
 Now, you're going to make a small change by adding an argument to the anonymous function and printing it to the console...
 
@@ -462,7 +464,7 @@ The `evt` stands for `event`.
 
 > The reason we're not actually using `event` is that it's a "reserved word" in Javascript, like "if" and "return".
 
-#### You Do: Explore The Event Object (5 minutes) (Bonus)
+#### Explore The Event Object
 
 With your partner, spend three minutes clicking the button and exploring what properties the event (or `evt`) object contains. Look for...
 
@@ -470,7 +472,7 @@ With your partner, spend three minutes clicking the button and exploring what pr
 * A way to tell the position of the mouse when it clicked.
 * One other piece of useful or interesting information.
 
-## Key Events (15 minutes) (Bonus)
+## Key Events
 
 Let's explore some other events. Add a text input field into `index.html`...
 
@@ -489,11 +491,11 @@ Let's explore some other events. Add a text input field into `index.html`...
 </html>
 ```
 
-#### You Do
+#### Explore Key Events
 
 With a partner, add an event listener for the `keyup` event to the input. Explore the `event` object again. **Can you find a way to tell which key was pressed?**
 
-#### We Do
+#### Review
 
 <details>
 
@@ -518,14 +520,14 @@ With a partner, add an event listener for the `keyup` event to the input. Explor
 
 </details>
 
-#### You Do
+#### Explore More Key Events
 
 Find the keyCodes for...
 * Enter
 * Tab
 * Delete
 
-#### You Do
+#### Explore Even More Key Events
 
 There are several other events that come up with the `input` tag. See if you can figure out the difference between...
 
@@ -548,3 +550,9 @@ There are several other events that come up with the `input` tag. See if you can
 4. What is the difference between `setInterval` and `setTimeout`?
 
 ## Homework: [Pixart](https://github.com/ga-wdi-exercises/pixart_js)
+
+## Screencasts
+
+* [Robin's Screencast](https://youtu.be/S4Xvo_m6P04)
+* [Andy's Screencast (Part I)](https://www.youtube.com/watch?v=xogI6prB-PI)
+* [Andy's Screencast (Part II)](https://www.youtube.com/watch?v=Srd2Tx1Z7v8)
