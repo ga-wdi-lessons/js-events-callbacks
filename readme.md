@@ -60,15 +60,12 @@ You should see this in `index.html`...
 </html>
 ```
 
-<!-- AM: Use/don't use document.ready depending on how Andy teaches it -->
-
 Now let's put a simple block of code in `script.js` to make sure it's properly linked to `index.html`...
 
 ```js
 // script.js
-$(document).ready(function(){
-  console.log( "The page's contents have finished loading!" );
-});
+
+console.log( "The page's contents have finished loading!" );
 ```
 
 ## You Do: What Is An Event? (5 minutes / 0:10)
@@ -204,13 +201,13 @@ The invocation may be immediate or it might happen later. In the example above, 
 
 > We can also pass in anonymous functions (i.e., define a nameless function directly inside of the event listener) instead of previously-defined functions.
 
-### You Do: Practice (15 minutes / 0:40)
+### You Do: Practice (10 minutes / 0:35)
 
-> 10 minutes exercise. 5 minutes review.
+> 5 minutes exercise. 5 minutes review.
 
 Visit this [repository](https://github.com/ga-wdi-exercises/event-listener-practice) and follow the instructions.
 
-### Callbacks: Calling vs. Referencing (5 minutes / 0:45)
+### Callbacks: Calling vs. Referencing (5 minutes / 0:40)
 
 When we call a function, we place parentheses after the function name. In the case of callbacks like `handleClickEvent`, however, there are no parens.
 
@@ -229,13 +226,13 @@ button.on("click", handleClickEvent());
 </details>
 
 
-## Break (10 minutes / 0:55)
+## Break (10 minutes / 0:50)
 
-### You Do: [Color Scheme Switcher](https://github.com/ga-dc/color-scheme-switcher) (20 minutes / 1:15)
+### You Do: [Color Scheme Switcher](https://github.com/ga-dc/color-scheme-switcher) (20 minutes / 1:10)
 
 > 15 minutes exercise. 5 minutes review.
 
-### `$(this)` (5 minutes / 1:20)
+### `$(this)` (5 minutes / 1:15)
 
 Let's switch back to our `events-callbacks-practice` code.
 
@@ -275,7 +272,7 @@ Refresh the page. What do you see when you click the button?
 
 </details>
 
-### You Do: [`this` Practice](https://github.com/ga-wdi-exercises/events-this-practice) (15 minutes / 1:35)
+### You Do: [`this` Practice](https://github.com/ga-wdi-exercises/events-this-practice) (15 minutes / 1:30)
 
 > 10 minutes exercise. 5 minutes review.
 
@@ -295,7 +292,7 @@ Refresh the page. What do you see when you click the button?
 
 </details>
 
-## Timing Functions (15 minutes / 1:50)
+## Timing Functions (15 minutes / 1:45)
 
 Let's look at timing functions -- that is, Javascript's way of making something happen every `x` seconds.
 
@@ -390,7 +387,7 @@ This risk is greatest when Javascript is making requests to other webpages. Ther
 
 In this small app we made, anything we want to be sure happens **after** those 5 seconds of computing should go inside the callback of the `setTimeout`. This way, we can be certain that it will run only when the 5 seconds are up.
 
-## You Do: [TimerJS](https://github.com/ga-wdi-exercises/timer_js) (40 minutes / 2:30)
+## You Do: [TimerJS](https://github.com/ga-wdi-exercises/timer_js) (40 minutes / 2:25)
 
 > 30 minutes exercise. 10 minutes review.
 
