@@ -577,7 +577,7 @@ Find the keyCodes for...
 * Tab
 * Delete
 
-#### Explore Even More Key Events
+#### Explore Even More Input Events
 
 There are several other events that come up with the `input` tag. See if you can figure out the difference between...
 
