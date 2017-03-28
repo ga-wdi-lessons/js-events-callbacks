@@ -12,39 +12,64 @@
 
 ## Framing (5 minutes / 0:05)
 
-In order to do things on the client side and give our web applications behavior, we need programmatic access to the HTML and CSS using Javascript.
-The **DOM** not only lets us manipulate the document or webpage using JavaScript, but also gives us the ability to respond to document events using JavaScript.
+So far, we have needed to use the REPL in the browser console to interact with our programs.
+This is asking a bit much of our users.
+Instead we would like to write code to respond to user interactions with the webpage.
+The **DOM** not only lets us manipulate the document or webpage using JavaScript, but also gives us the ability to write JavaScript that responds to interactions with the page.
+These interactions are communicated as **events**.
 
 > What might be an event we would want to respond to with JavaScript?
 
 We can *listen* for certain kinds of user-driven events, such as clicking a button, entering data into a form, keypresses and many, many more.
 
+## You Do: What Is An Event? (10 minutes / 0:10)
+
+> 7 minutes exercise. 3 minutes review.
+
+Spend 7 minutes doing the following tasks. You are encouraged to discuss your findings with a partner during the exercise.
+
+1. Come up with your own definition without looking at any other sources. Don't worry about getting it right -- what do you think an event is?
+2. Now, find (i.e., Google) some documentation on Javascript events. Does that information match your definition? How would you update your definition to include what you have learned but rephrased in your own words?
+3. Write down three examples of events.
+
+> If you need some help, you can find information on events and examples [W3Schools](http://www.w3schools.com/js/js_events.asp) and [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/Events).
+
+When you have finished, read [this issue](https://github.com/ga-wdi-lessons/js-events-callbacks/issues/9) and submit a comment with the three parts clearly labeled.
+
 ### User Interaction
 
 As we write client-side Javascript -- javascript that is executed in *the browser* -- it is very important to keep the user's actions in mind when designing our app's UI.
 
-For example, let's say we have a single button on our landing page, we need to write some code that will execute whenever a user clicks on that button.
+For example, let's say we have a single button on our landing page, we need to write some code that will run whenever a user clicks on that button.
 
 ### What is Asynchronicity?
 
-Javascript typically will run top-to-bottom. We as developers, however, have no idea when the code related to the button click will actually be executed.
-It's totally dependent on the user.
-Therefore, we need to write code that will execute asynchronously -- or in other words, outside of the typical top-to-bottom document flow -- and not hold up the rest of our application.
+In the JavaScript programs we have written so far, code runs in sequence; one line executing after another.
+When interpreting it, we start at the top of the file and read line by line to understand expected behavior.
+The flow of code goes from top to bottom.
+We can invoke a function which has been previously defined but we understand the code of the function body running line by line at the point of invocation.
 
-> The term asynchronicity, like many in programming may be unduly intimidating. It simply means "not happening at the same time".
-> We have actually seen this at play in our own code regularly when working at the REPL and not found it to be intuitive possibly to the point of being mundane.
-> The reason for using terms like asynchronicity is not to sound smart or create a barrier to entry, but so that we can be very exact when we talk about programming.
+In the case of our button however, when that code actually runs is totally dependent on the user.
+When a user clicks the button an event will be triggered.
+Therefore, we need to write code that will execute asynchronously -- kicking off when the user clicks.
+We do not want to hold up the rest of our application waiting for the user to click.
 
 Javascript as a language was built with this problem in mind and has spawned many more solutions that have been introduced through libraries, packages and frameworks as well as default language features.
 Together, these tools provide some abstractions to interact with events. As such, we as developers can write code to listen for and respond to these events.
 
 Today, we will get practice writing the underlying code responsible for adding behavior to a webpage with jQuery.
 
+> The term asynchronicity, like many in programming may be unduly intimidating. It simply means "not happening at the same time", not a part of this top to bottom flow.
+
+> We have actually seen this at play in our own code regularly when working at the REPL and not found it to be intuitive possibly to the point of being mundane.
+> The reason for using terms like asynchronicity is not to sound smart or create a barrier to entry, but so that we can be very exact when we talk about programming.
+
+
 ### jQuery and Vanilla Javascript
 
 Note that we are using jQuery for this lesson. jQuery is a **library** written in javascript that allows us to do more with less code and hides some frustrating or counterintuitive behavior of the DOM.
 
-> What code that hides unimportant details of something called?
+> What is code that hides unimportant details of something called?
 
 If so inclined we can even look at the [source code on GitHub](https://github.com/jquery/jquery) (took me a while to find the famous `$` but it's [here](https://github.com/jquery/jquery/blob/master/src/exports/global.js#L31)). Keep in mind this is one of the most battle hardened code bases of all time with tens of thousands of lines of code, thousands of commits, and hundreds of contributors.
 
@@ -54,7 +79,7 @@ Interspersed throughout the lesson are examples in vanilla Javascript that are e
 
 ### We Do: Set Up
 
-For this lesson we'll be working with only two files: `index.html` and `script.js`. We've already created these for you and included some starter code. Clone them down using the following Terminal command...
+For the guided portion of this lesson we'll be working with only two files: `index.html` and `script.js`. We've already created these for you and included some starter code. Clone them down using the following Terminal command...
 
 ```bash
 $ git clone https://github.com/ga-wdi-exercises/events-callbacks-practice.git
@@ -87,20 +112,6 @@ console.log( "The page's contents have finished loading!" );
 ```
 
 > Is this code running syncronously or asynchronously?
-
-## You Do: What Is An Event? (5 minutes / 0:10)
-
-> 3 minutes exercise. 2 minutes review.
-
-But first, a question for you: **What is an event (on a webpage)?** Spend three minutes doing the following tasks. You are encouraged to discuss your findings with a partner during the exercise.
-
-1. Come up with your own definition without looking at any other sources. Don't worry about getting it right -- what do you think an event is?
-2. Now, find (i.e., Google) some documentation on Javascript events. Does that information match your definition? How would you update your definition to include what you have learned but rephrased in your own words?
-3. Write down three examples of events.
-
-> If you need some help, you can find information on events and examples [W3Schools](http://www.w3schools.com/js/js_events.asp) and [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/Events).
-
-When you have finished, read [this issue](https://github.com/ga-wdi-lessons/js-events-callbacks/issues/9) and submit a comment with the three parts clearly labeled.
 
 ## Setting Up An Event Listener (15 minutes / 0:25)
 
