@@ -235,8 +235,9 @@ The first argument is where we indicate what type of event we are listening to. 
 
 The second argument is our function defined above. This is what is known as a **callback**.
 
-This might not be your first time hearing it and definitely won't be your last.
-A callback is a function that is passed as an argument to another function, the function which received the passed function now has access to it and can invoke (or "call back") the passed function whenever it would like. We will explore this idea in more detail in a later lesson.
+A callback is a function that is passed as an argument to another function.
+The receiving function can then invoke the callback function whenever it would like.
+We will explore this idea in more detail in a later lesson.
 
 **A callback is a function that will be run at some later time.**
 
@@ -439,7 +440,7 @@ In this small app we made, anything we want to be sure happens **after** those 5
 
 ## You Do: [TimerJS](https://github.com/ga-wdi-exercises/timer_js) (40 minutes / 2:25)
 
-> 30 minutes exercise. 10 minutes review.
+> 30 minutes exercise . 10 minutes review.
 
 -------
 
